@@ -53,63 +53,32 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\script\fps\Interaction_System\InteractionData.cs" />
-    <Compile Include="Assets\script\fps\First_Person_Controller\FirstPersonController.cs" />
-    <Compile Include="Assets\script\fps\Camera_Controller\CameraZoom.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\Pickable.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\InteractionUIPanel.cs" />
-    <Compile Include="Assets\script\fps\Camera_Controller\CameraSwaying.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\IPickable.cs" />
-    <Compile Include="Assets\script\fps\Input_Handler\InputHandler.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\HeadBobData.cs" />
-    <Compile Include="Assets\script\fps\Interactables\DestroyInteractable.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\MovementInputData.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\CameraInputData.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\Hoverable.cs" />
-    <Compile Include="Assets\script\fps\Camera_Controller\CameraBreathing.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\InteractionUI.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\InteractionInputData.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\PickableData.cs" />
-    <Compile Include="Assets\script\fps\Camera_Controller\CameraController.cs" />
-    <Compile Include="Assets\script\fps\First_Person_Controller\HeadBob.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\IInteractable.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\InteractableBase.cs" />
-    <Compile Include="Assets\script\fps\Perlin_Noise_Scroller\PerlinNoiseScroller.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\PerlinNoiseData.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\IHoverable.cs" />
-    <Compile Include="Assets\script\fps\Scriptable_Objects\PickableInputData.cs" />
-    <Compile Include="Assets\script\fps\Interaction_System\InteractionController.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ButtonAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\TagAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\LabelAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\DisableIfAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ValidatorAttributes\MinValueAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ValidatorAttributes\MaxValueAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawConditionAttributes\ShowIfAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ProgressBarAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ShowNativePropertyAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ResizableTextAreaAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\MetaAttributes\MetaAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ReadOnlyAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ShowAssetPreviewAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawConditionAttributes\HideIfAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ValidatorAttributes\RequiredAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\DrawerAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ShowNonSerializedFieldAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ConditionOperator.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ValidatorAttributes\ValidatorAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\ValidatorAttributes\ValidateInputAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\MetaAttributes\OnValueChangedAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\NaughtyAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\DropdownAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\GroupAttributes\GroupAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawConditionAttributes\DrawConditionAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\EnableIfAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\GroupAttributes\BoxGroupAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\MetaAttributes\InfoBoxAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\ReorderableListAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\MinMaxSliderAttribute.cs" />
-    <Compile Include="Assets\script\addon\naughtyAttributes\Core\DrawerAttributes\SliderAttribute.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\InteractableBase.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\PerlinNoiseData.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\IPickable.cs" />
+    <Compile Include="Assets\Scripts\Interactables\DestroyInteractable.cs" />
+    <Compile Include="Assets\Scripts\Camera_Controller\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Camera_Controller\CameraSwaying.cs" />
+    <Compile Include="Assets\Scripts\First_Person_Controller\HeadBob.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\InteractionUI.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\Pickable.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\InteractionController.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\Perlin_Noise_Scroller\PerlinNoiseScroller.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\PickableData.cs" />
+    <Compile Include="Assets\Scripts\Camera_Controller\CameraZoom.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\InteractionUIPanel.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\IHoverable.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\CameraInputData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\PickableInputData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\HeadBobData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\MovementInputData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable_Objects\InteractionInputData.cs" />
+    <Compile Include="Assets\Scripts\Input_Handler\InputHandler.cs" />
+    <Compile Include="Assets\Scripts\First_Person_Controller\FirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\Hoverable.cs" />
+    <Compile Include="Assets\Scripts\Camera_Controller\CameraBreathing.cs" />
+    <Compile Include="Assets\Scripts\Interaction_System\InteractionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -333,6 +302,9 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
@@ -714,6 +686,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{EA1FE12C-30F6-B183-DD8B-35D5D487BC3B}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
