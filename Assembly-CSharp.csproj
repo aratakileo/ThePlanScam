@@ -53,34 +53,35 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\script\Interaction_System\InteractableBase.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\PerlinNoiseData.cs" />
-    <Compile Include="Assets\script\Interaction_System\IPickable.cs" />
-    <Compile Include="Assets\script\Interactables\DestroyInteractable.cs" />
-    <Compile Include="Assets\script\Camera_Controller\CameraController.cs" />
-    <Compile Include="Assets\script\Camera_Controller\CameraSwaying.cs" />
-    <Compile Include="Assets\script\FPS\HeadBob.cs" />
-    <Compile Include="Assets\script\Interaction_System\InteractionUI.cs" />
-    <Compile Include="Assets\script\Interaction_System\Pickable.cs" />
-    <Compile Include="Assets\script\Interaction_System\InteractionController.cs" />
-    <Compile Include="Assets\script\Interaction_System\IInteractable.cs" />
-    <Compile Include="Assets\script\Perlin_Noise_Scroller\PerlinNoiseScroller.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\PickableData.cs" />
-    <Compile Include="Assets\script\Camera_Controller\CameraZoom.cs" />
-    <Compile Include="Assets\script\Interaction_System\InteractionUIPanel.cs" />
-    <Compile Include="Assets\script\Interaction_System\IHoverable.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\CameraInputData.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\PickableInputData.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\HeadBobData.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\MovementInputData.cs" />
-    <Compile Include="Assets\script\Scriptable_Objects\InteractionInputData.cs" />
-    <Compile Include="Assets\script\Input_Handler\InputHandler.cs" />
-    <Compile Include="Assets\script\FPS\FirstPersonController.cs" />
-    <Compile Include="Assets\script\Interaction_System\Hoverable.cs" />
-    <Compile Include="Assets\script\FPS\Stamina\ProgressBarController.cs" />
-    <Compile Include="Assets\script\Camera_Controller\CameraBreathing.cs" />
-    <Compile Include="Assets\script\Interaction_System\InteractionData.cs" />
-    <Compile Include="Assets\script\FPS\Stamina\StaminaController.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractableBase.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\PerlinNoiseData.cs" />
+    <Compile Include="Assets\scripts\interaction-system\IPickable.cs" />
+    <Compile Include="Assets\scripts\DestroyInteractable.cs" />
+    <Compile Include="Assets\scripts\camera-controller\CameraController.cs" />
+    <Compile Include="Assets\scripts\camera-controller\CameraSwaying.cs" />
+    <Compile Include="Assets\scripts\fps\HeadBob.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractionUI.cs" />
+    <Compile Include="Assets\scripts\interaction-system\Pickable.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractionController.cs" />
+    <Compile Include="Assets\scripts\interaction-system\IInteractable.cs" />
+    <Compile Include="Assets\scripts\PerlinNoiseScroller.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\PickableData.cs" />
+    <Compile Include="Assets\scripts\camera-controller\CameraZoom.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractionUIPanel.cs" />
+    <Compile Include="Assets\scripts\interaction-system\IHoverable.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\CameraInputData.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\PickableInputData.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\HeadBobData.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\MovementInputData.cs" />
+    <Compile Include="Assets\scripts\scriptable-objs\InteractionInputData.cs" />
+    <Compile Include="Assets\scripts\InputHandler.cs" />
+    <Compile Include="Assets\scripts\fps\FirstPersonController.cs" />
+    <Compile Include="Assets\scripts\interaction-system\Hoverable.cs" />
+    <Compile Include="Assets\scripts\stamina-system\ProgressBarController.cs" />
+    <Compile Include="Assets\scripts\camera-controller\CameraBreathing.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractionData.cs" />
+    <Compile Include="Assets\scripts\stamina-system\StaminaController.cs" />
+    <Compile Include="Assets\scripts\utils\ColorUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
