@@ -14,16 +14,18 @@ namespace Pexty
                 [Space, Header("Settings")]
                 [SerializeField] private float m_maxValue = 5f;
                 [SerializeField] private float cooldown = 1f;
-            #endregion
+        #endregion
 
-            private float m_value;
-            private float cooldownDuration = 0f;
-            private bool isRestoring = false;
+            #region Private
+                private float m_value;
+                private float cooldownDuration = 0f;
+                private bool isRestoring = false;
+            #endregion
         #endregion
 
         #region BuilIn Methods
-            // Start is called before the first frame update
-            void Start()
+        // Start is called before the first frame update
+        void Start()
             {
                 m_value = m_maxValue;
             }
@@ -34,7 +36,6 @@ namespace Pexty
                 if (m_value > m_maxValue) m_value = m_maxValue;
                 if (m_value < 0) m_value = 0;
                 if (m_value > 0 && isRunning && !isRestoring) m_value -= Time.deltaTime;
-
                 if (m_value == 0) isRestoring = true;
 
                 if (m_value == m_maxValue)
@@ -54,7 +55,7 @@ namespace Pexty
         #endregion
 
         #region Custom Methods
-            private bool isRunning => movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.IsMoving;
+            private bool isRunning => movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y == 1f;
             public bool canRun => !isRestoring;
 
             public float value => m_value;

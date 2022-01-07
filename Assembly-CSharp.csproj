@@ -77,10 +77,10 @@
     <Compile Include="Assets\script\Input_Handler\InputHandler.cs" />
     <Compile Include="Assets\script\FPS\FirstPersonController.cs" />
     <Compile Include="Assets\script\Interaction_System\Hoverable.cs" />
-    <Compile Include="Assets\script\ProgressBarController.cs" />
+    <Compile Include="Assets\script\FPS\Stamina\ProgressBarController.cs" />
     <Compile Include="Assets\script\Camera_Controller\CameraBreathing.cs" />
     <Compile Include="Assets\script\Interaction_System\InteractionData.cs" />
-    <Compile Include="Assets\script\FPS\StaminaController.cs" />
+    <Compile Include="Assets\script\FPS\Stamina\StaminaController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

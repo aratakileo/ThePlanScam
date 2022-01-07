@@ -52,10 +52,10 @@ namespace Pexty
                     if(m_xAmountThisFrame == m_xAmountPreviousFrame) // check if our previous dir equals current dir
                         m_diffrentDirection = false; // if yes we want to reset this bool so basically it can be used correctly once we move again
 
-                    _scrollSpeed = Mathf.Lerp(_scrollSpeed,0f,Time.deltaTime * returnSpeed);
+                    _scrollSpeed = Mathf.Lerp(_scrollSpeed, 0f, Time.deltaTime * returnSpeed);
                 }
 
-                _scrollSpeed = Mathf.Clamp(_scrollSpeed,-1f,1f);
+                _scrollSpeed = Mathf.Clamp(_scrollSpeed, -1f, 1f);
                 //Debug.Log(_scrollSpeed);
 
                 float _swayFinalAmount;
@@ -68,7 +68,7 @@ namespace Pexty
                 Vector3 _swayVector;
                 _swayVector.z = _swayFinalAmount;
 
-                m_camTransform.localEulerAngles = new Vector3(m_camTransform.localEulerAngles.x,m_camTransform.localEulerAngles.y,_swayVector.z);
+                m_camTransform.localEulerAngles = new Vector3(m_camTransform.localEulerAngles.x, m_camTransform.localEulerAngles.y, _swayVector.z);
 
                 m_xAmountPreviousFrame = m_xAmountThisFrame;
             }

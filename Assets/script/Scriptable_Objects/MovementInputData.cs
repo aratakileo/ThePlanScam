@@ -31,8 +31,6 @@ namespace Pexty
                 set => m_inputVector.y = value;
             }
 
-            public bool IsMoving => InputVector.x != 0 || InputVector.y != 0;
-
             public bool IsRunning
             {
                 get => m_isRunning;

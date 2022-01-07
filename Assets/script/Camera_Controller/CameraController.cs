@@ -7,19 +7,19 @@ namespace Pexty
     {
         #region Variables
             #region Data
-                [Space,Header("Data")]
+                [Space, Header("Data")]
                 [SerializeField] private CameraInputData camInputData = null;
 
-                [Space,Header("Custom Classes")]
+                [Space, Header("Custom Classes")]
                 [SerializeField] private CameraZoom cameraZoom = null;
                 [SerializeField] private CameraSwaying cameraSway = null;
 
             #endregion
 
             #region Settings
-                [Space,Header("Look Settings")]
-                [SerializeField] private Vector2 sensitivity = Vector2.zero;
-                [SerializeField] private Vector2 smoothAmount = Vector2.zero;
+                [Space, Header("Look Settings")]
+                [SerializeField] private Vector2 sensitivity = new Vector2(250f, 250f);
+                [SerializeField] private Vector2 smoothAmount = new Vector2(5f, 5f);
                 [SerializeField] [MinMaxSlider(-90f,90f)] private Vector2 lookAngleMinMax = Vector2.zero;
             #endregion
 
@@ -80,24 +80,24 @@ namespace Pexty
                 m_desiredYaw += camInputData.InputVector.x * sensitivity.x * Time.deltaTime;
                 m_desiredPitch -= camInputData.InputVector.y * sensitivity.y * Time.deltaTime;
 
-                m_desiredPitch = Mathf.Clamp(m_desiredPitch,lookAngleMinMax.x,lookAngleMinMax.y);
+                m_desiredPitch = Mathf.Clamp(m_desiredPitch, lookAngleMinMax.x, lookAngleMinMax.y);
             }
 
             void SmoothRotation()
             {
-                m_yaw = Mathf.Lerp(m_yaw,m_desiredYaw, smoothAmount.x * Time.deltaTime);
-                m_pitch = Mathf.Lerp(m_pitch,m_desiredPitch, smoothAmount.y * Time.deltaTime);
+                m_yaw = Mathf.Lerp(m_yaw, m_desiredYaw, smoothAmount.x * Time.deltaTime);
+                m_pitch = Mathf.Lerp(m_pitch, m_desiredPitch, smoothAmount.y * Time.deltaTime);
             }
 
             void ApplyRotation()
             {
-                transform.eulerAngles = new Vector3(0f,m_yaw,0f);
-                m_pitchTranform.localEulerAngles = new Vector3(m_pitch,0f,0f);
+                transform.eulerAngles = new Vector3(0f, m_yaw, 0f);
+                m_pitchTranform.localEulerAngles = new Vector3(m_pitch, 0f, 0f);
             }
 
-            public void HandleSway(Vector3 _inputVector,float _rawXInput)
+            public void HandleSway(Vector3 _inputVector, float _rawXInput)
             {
-                cameraSway.SwayPlayer(_inputVector,_rawXInput);
+                cameraSway.SwayPlayer(_inputVector, _rawXInput);
             }
 
             void HandleZoom()
@@ -109,7 +109,7 @@ namespace Pexty
 
             public void ChangeRunFOV(bool _returning)
             {
-                cameraZoom.ChangeRunFOV(_returning,this);
+                cameraZoom.ChangeRunFOV(_returning, this);
             }
 
             void ChangeCursorState()

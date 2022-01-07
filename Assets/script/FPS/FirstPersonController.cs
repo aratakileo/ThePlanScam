@@ -282,7 +282,7 @@ namespace Pexty
                     Vector3 _origin = transform.position + m_characterController.center;
 
                     bool _hitGround = Physics.SphereCast(_origin,raySphereRadius,Vector3.down,out m_hitInfo,m_finalRayLength,groundLayer);
-                    Debug.DrawRay(_origin,Vector3.down * (m_finalRayLength), Color.red);
+                    Debug.DrawRay(_origin, Vector3.down * (m_finalRayLength), Color.red);
 
                     m_isGrounded = _hitGround;
                 }
@@ -337,8 +337,7 @@ namespace Pexty
 
                 protected virtual Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
                 {
-                    if(m_isGrounded)
-                        _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
+                    if (m_isGrounded) _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
                     
                     return _vectorToFlat;
                 }
