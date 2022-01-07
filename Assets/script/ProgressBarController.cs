@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,21 +5,22 @@ namespace Pexty
 {
     public class ProgressBarController : MonoBehaviour
     {
-        [SerializeField] private FirstPersonController firstPersonController;
+        [Space, Header("Data")]
+        [SerializeField] private StaminaController staminaController;
         [SerializeField] private Slider slider;
         [SerializeField] private RectTransform rectTransform;
 
         // Start is called before the first frame update
         void Start()
         {
-            slider.maxValue = firstPersonController.maxStamina;
+            slider.maxValue = staminaController.maxValue;
         }
 
         // Update is called once per frame
         void Update()
         {
-            slider.maxValue = firstPersonController.maxStamina;
-            slider.value = firstPersonController.stamina;
+            slider.maxValue = staminaController.maxValue;
+            slider.value = staminaController.value;
 
             // Show stamina progress by center
             float percent = slider.value / slider.maxValue;

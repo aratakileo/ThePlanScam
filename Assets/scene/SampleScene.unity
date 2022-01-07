@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 651059201}
   - component: {fileID: 651059200}
   - component: {fileID: 651059199}
+  - component: {fileID: 651059204}
   m_Layer: 0
   m_Name: FPS
   m_TagString: Untagged
@@ -746,7 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionInputData: {fileID: 11400000, guid: 53d9f3696d1130146ae3edd77cffcd05, type: 2}
   interactionData: {fileID: 11400000, guid: 229de2e6b9a896344928fb2041804439, type: 2}
-  uiPanel: {fileID: 0}
+  uiPanel: {fileID: 1241756706}
   rayDistance: 5
   raySphereRadius: 0.3
   interactableLayer:
@@ -766,15 +767,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   headBobData: {fileID: 11400000, guid: fd51ede42cc20a04da93c2d2fac1e05c, type: 2}
+  staminaController: {fileID: 651059204}
   crouchSpeed: 1
   walkSpeed: 3
   runSpeed: 6
   jumpSpeed: 7
   moveBackwardsSpeedPercent: 0.5
   moveSideSpeedPercent: 0.7
-  maxStamina: 5
-  stamina: 0
-  staminaCooldown: 3
   canRunThreshold: 0.7
   runTransitionCurve:
     serializedVersion: 2
@@ -940,6 +939,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651059204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651059198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eb240fc7bf3bb4b90046de801fdda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
+  m_maxValue: 5
+  cooldown: 1
 --- !u!1 &812402840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee022112fbb62d4f8fcb4a95ef45cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPersonController: {fileID: 651059201}
+  staminaController: {fileID: 651059204}
   slider: {fileID: 1470560833}
   rectTransform: {fileID: 490624659}
 --- !u!1 &1526980365

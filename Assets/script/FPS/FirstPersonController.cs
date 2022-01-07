@@ -13,6 +13,7 @@ namespace Pexty
                     [Space, Header("Data")]
                     [SerializeField] private MovementInputData movementInputData = null;
                     [SerializeField] private HeadBobData headBobData = null;
+                    [SerializeField] private StaminaController staminaController = null;
 
                 #endregion
                     
@@ -28,12 +29,6 @@ namespace Pexty
 
                 #region Run Settings
                     [Space, Header("Run Settings")]
-
-                    [SerializeField] public float maxStamina = 5f;
-                    [HideInInspector] public float stamina;
-                    [SerializeField] private float staminaCooldown = 1f;
-                    [HideInInspector] private float staminaCooldownDuration = 0f;
-                    [HideInInspector] private bool staminaIsReloading = false;
 
                     [Slider(-1f,1f)][SerializeField] private float canRunThreshold = 0.8f;
                     [SerializeField] private AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
@@ -150,33 +145,12 @@ namespace Pexty
         #region BuiltIn Methods     
             protected virtual void Start()
             {
-                stamina = maxStamina;
-
                 GetComponents();
                 InitVariables();
             }
 
             protected virtual void Update()
             {
-                if (stamina > maxStamina) stamina = maxStamina;
-                if (stamina < 0) stamina = 0;
-                if (stamina > 0 && movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.IsMoving && !staminaIsReloading) stamina -= Time.deltaTime;
-
-                if (stamina == 0) staminaIsReloading = true;
-
-                if (stamina == maxStamina) {
-                    staminaIsReloading = false;
-                    staminaCooldownDuration = 0;
-                }
-
-                if (staminaIsReloading)
-                {
-                    if (staminaCooldownDuration < staminaCooldown) staminaCooldownDuration += Time.deltaTime;
-                    else stamina += Time.deltaTime;
-                }
-
-                if (stamina < maxStamina && !(movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.IsMoving) && !staminaIsReloading) stamina += Time.deltaTime;
-
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
 
@@ -346,7 +320,7 @@ namespace Pexty
                         _normalizedDir = m_smoothFinalMoveDir.normalized;
 
                     float _dot = Vector3.Dot(transform.forward, _normalizedDir);
-                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && !staminaIsReloading;
+                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && staminaController.canRun;
                 }
 
                 protected virtual void CalculateMovementDirection()
