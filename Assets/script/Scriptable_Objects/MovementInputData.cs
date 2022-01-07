@@ -8,7 +8,6 @@ namespace VHS
         #region Data
             Vector2 m_inputVector;
 
-            bool m_isMoving;
             bool m_isRunning;
             bool m_isCrouching;
 
@@ -32,21 +31,17 @@ namespace VHS
                 set => m_inputVector.y = value;
             }
 
-            public bool IsMoving
-            {
-                get => m_isMoving;
-                set => m_isMoving = value;
-            }
+            public bool IsMoving => InputVector.x != 0 || InputVector.y != 0;
 
             public bool IsRunning
             {
-                get => m_isRunning && IsMoving;
+                get => m_isRunning;
                 set => m_isRunning = value;
             }
 
             public bool IsCrouching
             {
-                get => m_isCrouching && IsMoving;
+                get => m_isCrouching;
                 set => m_isCrouching = value;
             }
 
@@ -80,7 +75,6 @@ namespace VHS
             {
                 m_inputVector = Vector2.zero;
                 
-                m_isMoving = false;
                 m_isRunning = false;
                 m_isCrouching = false;
 

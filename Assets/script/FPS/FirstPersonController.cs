@@ -31,8 +31,9 @@ namespace VHS
 
                     [SerializeField] public float maxStamina = 5f;
                     [HideInInspector] public float stamina;
-                    [SerializeField] private float staminaCooldown = 3f;
-                    [HideInInspector] private float staminaCooldownDuration = -1f;
+                    [SerializeField] private float staminaCooldown = 1f;
+                    [HideInInspector] private float staminaCooldownDuration = 0f;
+                    [HideInInspector] private bool staminaIsReloading = false;
 
                     [Slider(-1f,1f)][SerializeField] private float canRunThreshold = 0.8f;
                     [SerializeField] private AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
@@ -159,16 +160,22 @@ namespace VHS
             {
                 if (stamina > maxStamina) stamina = maxStamina;
                 if (stamina < 0) stamina = 0;
-                if (stamina > 0 && movementInputData.IsRunning) stamina -= Time.deltaTime;
-                if (stamina == 0)
-                {
-                    if (staminaCooldownDuration == -1f) staminaCooldownDuration = 0f;
+                if (stamina > 0 && movementInputData.IsRunning && movementInputData.IsMoving && !staminaIsReloading) stamina -= Time.deltaTime;
 
-                    staminaCooldownDuration += Time.deltaTime;
-                    
-                    if (staminaCooldownDuration >= staminaCooldown) staminaCooldownDuration = -1f;
+                if (stamina == 0) staminaIsReloading = true;
+
+                if (stamina == maxStamina) {
+                    staminaIsReloading = false;
+                    staminaCooldownDuration = 0;
                 }
-                if (stamina < maxStamina && !movementInputData.IsRunning && staminaCooldownDuration == -1f) stamina += Time.deltaTime;
+
+                if (staminaIsReloading)
+                {
+                    if (staminaCooldownDuration < staminaCooldown) staminaCooldownDuration += Time.deltaTime;
+                    else stamina += Time.deltaTime;
+                }
+
+                if (stamina < maxStamina && !(movementInputData.IsRunning && movementInputData.IsMoving) && !staminaIsReloading) stamina += Time.deltaTime;
 
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
@@ -270,7 +277,7 @@ namespace VHS
                 {
                     m_smoothCurrentSpeed = Mathf.Lerp(m_smoothCurrentSpeed, m_currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-                    if(movementInputData.IsRunning && CanRun())
+                    if(movementInputData.IsRunning && movementInputData.IsMoving && CanRun())
                     {
                         float _walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, m_smoothCurrentSpeed);
                         m_finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(_walkRunPercent) * m_walkRunSpeedDifference + walkSpeed;
@@ -339,7 +346,7 @@ namespace VHS
                         _normalizedDir = m_smoothFinalMoveDir.normalized;
 
                     float _dot = Vector3.Dot(transform.forward, _normalizedDir);
-                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && stamina > 0;
+                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && !staminaIsReloading;
                 }
 
                 protected virtual void CalculateMovementDirection()
@@ -364,7 +371,7 @@ namespace VHS
 
                 protected virtual void CalculateSpeed()
                 {
-                    m_currentSpeed = movementInputData.IsRunning && CanRun() ? runSpeed : walkSpeed;
+                    m_currentSpeed = movementInputData.IsRunning && movementInputData.IsMoving && CanRun() ? runSpeed : walkSpeed;
                     m_currentSpeed = movementInputData.IsCrouching ? crouchSpeed : m_currentSpeed;
                     m_currentSpeed = !movementInputData.HasInput ? 0f : m_currentSpeed;
                     m_currentSpeed = movementInputData.InputVector.y == -1 ? m_currentSpeed * moveBackwardsSpeedPercent : m_currentSpeed;
@@ -382,9 +389,6 @@ namespace VHS
 
                     if(m_characterController.isGrounded) // Thanks to this check we are not applying extra y velocity when in air so jump will be consistent
                         m_finalMoveVector.y += _finalVector.y ; //so this makes our player go in forward dir using slope normal but when jumping this is making it go higher so this is weird
-
-                    movementInputData.IsMoving = m_finalMoveVector.x != 0 || m_finalMoveVector.z != 0;
-                    print($"${movementInputData.IsMoving}, ${m_finalMoveVector[0]}, ${m_finalMoveVector[2]}");
                 }
             #endregion
 
@@ -503,7 +507,7 @@ namespace VHS
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
-                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && CanRun(),movementInputData.IsCrouching, movementInputData.InputVector);
+                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && movementInputData.IsMoving && CanRun(),movementInputData.IsCrouching, movementInputData.InputVector);
                             m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset,Time.deltaTime * smoothHeadBobSpeed);
                         }
                     }
@@ -536,7 +540,7 @@ namespace VHS
                             m_cameraController.ChangeRunFOV(false);
                         }
 
-                        if(movementInputData.IsRunning && CanRun() && !m_duringRunAnimation )
+                        if(movementInputData.IsRunning && movementInputData.IsMoving && CanRun() && !m_duringRunAnimation )
                         {
                             m_duringRunAnimation = true;
                             m_cameraController.ChangeRunFOV(false);
@@ -589,7 +593,7 @@ namespace VHS
                     Quaternion _currentRot = transform.rotation;
                     Quaternion _desiredRot = m_yawTransform.rotation;
 
-                    transform.rotation = Quaternion.Slerp(_currentRot,_desiredRot,Time.deltaTime * smoothRotateSpeed);
+                    transform.rotation = Quaternion.Slerp(_currentRot, _desiredRot, Time.deltaTime * smoothRotateSpeed);
                 }
             #endregion
         #endregion
