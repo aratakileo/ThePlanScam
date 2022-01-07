@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace VHS
+namespace Pexty
 {        
     public class InteractionUIPanel : MonoBehaviour
     {

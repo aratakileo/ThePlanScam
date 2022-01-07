@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {
     [CreateAssetMenu(fileName = "PickableData", menuName = "FirstPersonController/Data/PickableData", order = 0)]
     public class PickableData : ScriptableObject

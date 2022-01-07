@@ -2,30 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using VHS;
 
-public class ProgressBarController : MonoBehaviour
+namespace Pexty
 {
-    [SerializeField] private FirstPersonController firstPersonController;
-    [SerializeField] private Slider slider;
-    [SerializeField] private RectTransform rectTransform;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ProgressBarController : MonoBehaviour
     {
-        slider.maxValue = firstPersonController.maxStamina;
-    }
+        [SerializeField] private FirstPersonController firstPersonController;
+        [SerializeField] private Slider slider;
+        [SerializeField] private RectTransform rectTransform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        slider.maxValue = firstPersonController.maxStamina;
-        slider.value = firstPersonController.stamina;
+        // Start is called before the first frame update
+        void Start()
+        {
+            slider.maxValue = firstPersonController.maxStamina;
+        }
 
-        // Show stamina progress by center
-        float percent = slider.value / slider.maxValue;
+        // Update is called once per frame
+        void Update()
+        {
+            slider.maxValue = firstPersonController.maxStamina;
+            slider.value = firstPersonController.stamina;
 
-        rectTransform.anchorMin = new Vector2(1f - (0.5f * percent + 0.5f), rectTransform.anchorMin.y);
-        rectTransform.anchorMax = new Vector2(0.5f + 0.5f * percent, rectTransform.anchorMax.y);
+            // Show stamina progress by center
+            float percent = slider.value / slider.maxValue;
+
+            rectTransform.anchorMin = new Vector2(1f - (0.5f * percent + 0.5f), rectTransform.anchorMin.y);
+            rectTransform.anchorMax = new Vector2(0.5f + 0.5f * percent, rectTransform.anchorMax.y);
+        }
     }
 }

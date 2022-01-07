@@ -2,7 +2,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace VHS
+namespace Pexty
 {
     [RequireComponent(typeof(CharacterController))]
     public class FirstPersonController : MonoBehaviour
@@ -160,7 +160,7 @@ namespace VHS
             {
                 if (stamina > maxStamina) stamina = maxStamina;
                 if (stamina < 0) stamina = 0;
-                if (stamina > 0 && movementInputData.IsRunning && movementInputData.IsMoving && !staminaIsReloading) stamina -= Time.deltaTime;
+                if (stamina > 0 && movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.IsMoving && !staminaIsReloading) stamina -= Time.deltaTime;
 
                 if (stamina == 0) staminaIsReloading = true;
 
@@ -175,7 +175,7 @@ namespace VHS
                     else stamina += Time.deltaTime;
                 }
 
-                if (stamina < maxStamina && !(movementInputData.IsRunning && movementInputData.IsMoving) && !staminaIsReloading) stamina += Time.deltaTime;
+                if (stamina < maxStamina && !(movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.IsMoving) && !staminaIsReloading) stamina += Time.deltaTime;
 
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
@@ -277,7 +277,7 @@ namespace VHS
                 {
                     m_smoothCurrentSpeed = Mathf.Lerp(m_smoothCurrentSpeed, m_currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-                    if(movementInputData.IsRunning && movementInputData.IsMoving && CanRun())
+                    if(movementInputData.IsRunning && CanRun())
                     {
                         float _walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, m_smoothCurrentSpeed);
                         m_finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(_walkRunPercent) * m_walkRunSpeedDifference + walkSpeed;
@@ -371,7 +371,7 @@ namespace VHS
 
                 protected virtual void CalculateSpeed()
                 {
-                    m_currentSpeed = movementInputData.IsRunning && movementInputData.IsMoving && CanRun() ? runSpeed : walkSpeed;
+                    m_currentSpeed = movementInputData.IsRunning && CanRun() ? runSpeed : walkSpeed;
                     m_currentSpeed = movementInputData.IsCrouching ? crouchSpeed : m_currentSpeed;
                     m_currentSpeed = !movementInputData.HasInput ? 0f : m_currentSpeed;
                     m_currentSpeed = movementInputData.InputVector.y == -1 ? m_currentSpeed * moveBackwardsSpeedPercent : m_currentSpeed;
@@ -507,8 +507,8 @@ namespace VHS
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
-                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && movementInputData.IsMoving && CanRun(),movementInputData.IsCrouching, movementInputData.InputVector);
-                            m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset,Time.deltaTime * smoothHeadBobSpeed);
+                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && CanRun(), movementInputData.IsCrouching, movementInputData.InputVector);
+                            m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset, Time.deltaTime * smoothHeadBobSpeed);
                         }
                     }
                     else // if we are not moving or we are not grounded
@@ -540,7 +540,7 @@ namespace VHS
                             m_cameraController.ChangeRunFOV(false);
                         }
 
-                        if(movementInputData.IsRunning && movementInputData.IsMoving && CanRun() && !m_duringRunAnimation )
+                        if(movementInputData.IsRunning && CanRun() && !m_duringRunAnimation )
                         {
                             m_duringRunAnimation = true;
                             m_cameraController.ChangeRunFOV(false);

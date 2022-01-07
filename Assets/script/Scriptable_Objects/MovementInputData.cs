@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     [CreateAssetMenu(fileName = "MovementInputData", menuName = "FirstPersonController/Data/MovementInputData", order = 1)]
     public class MovementInputData : ScriptableObject

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     public class PerlinNoiseScroller
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     [CreateAssetMenu(fileName = "Interaction Data", menuName = "InteractionSystem/InteractionData")]
     public class InteractionData : ScriptableObject

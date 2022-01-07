@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace VHS
+namespace Pexty
 {    
     public class InputHandler : MonoBehaviour
     {

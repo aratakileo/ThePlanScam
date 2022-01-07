@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using NaughtyAttributes;
 
-namespace VHS
+namespace Pexty
 {
     [CreateAssetMenu(fileName = "HeadBobData", menuName = "FirstPersonController/Data/HeadBobData", order = 3)]
     public class HeadBobData : ScriptableObject

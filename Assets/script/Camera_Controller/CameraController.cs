@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     public class CameraController : MonoBehaviour
     {

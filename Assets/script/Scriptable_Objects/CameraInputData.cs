@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {
     
     [CreateAssetMenu(fileName = "CameraInputData", menuName = "FirstPersonController/Data/CameraInputData", order = 0)]

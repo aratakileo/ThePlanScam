@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Pickable : MonoBehaviour, IPickable

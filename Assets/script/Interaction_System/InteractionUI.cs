@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-namespace VHS
+namespace Pexty
 {    
     public class InteractionUI : MonoBehaviour
     {

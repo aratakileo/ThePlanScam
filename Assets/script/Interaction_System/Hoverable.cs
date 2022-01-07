@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace VHS
+namespace Pexty
 {
     public class Hoverable : MonoBehaviour, IHoverable
     {

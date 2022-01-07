@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     public class DestroyInteractable : InteractableBase
     {

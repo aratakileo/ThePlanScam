@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VHS
+namespace Pexty
 {    
     public class InteractionController : MonoBehaviour
     {
@@ -47,10 +47,10 @@ namespace VHS
         #region Custom methods         
             void CheckForInteractable()
             {
-                Ray _ray = new Ray(m_cam.transform.position,m_cam.transform.forward);
+                Ray _ray = new Ray(m_cam.transform.position, m_cam.transform.forward);
                 RaycastHit _hitInfo;
 
-                bool _hitSomething = Physics.SphereCast(_ray,raySphereRadius, out _hitInfo, rayDistance, interactableLayer);
+                bool _hitSomething = Physics.SphereCast(_ray, raySphereRadius, out _hitInfo, rayDistance, interactableLayer);
 
                 if(_hitSomething)
                 {
