@@ -55,7 +55,7 @@ namespace Pexty
         #endregion
 
         #region Custom Methods
-            private bool isRunning => movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y == 1f;
+            private bool isRunning => movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y > 0f;
             public bool canRun => !isRestoring;
 
             public float value => m_value;
