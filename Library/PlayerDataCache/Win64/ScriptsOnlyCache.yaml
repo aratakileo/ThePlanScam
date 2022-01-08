@@ -34,7 +34,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Slider
   sceneClasses:
-    Assets/scene/game.unity:
+    Assets/scenes/mainScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -636,7 +636,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 2fe36af001ea2ebda35edf90635d2d3c
+      Hash: e0add10b3fe7dc3a05bdab68f401b58e
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: ProgressBarController
@@ -696,5 +696,5 @@ ScriptsOnlyBuild:
     className: StaminaController
   platform: 19
   scenePathNames:
-  - Assets/scene/game.unity
+  - Assets/scenes/mainScene.unity
   playerPath: C:/Users/teaco/Desktop/Projects/Unity3D/Plan Scam/Build/Plan Scam.exe
