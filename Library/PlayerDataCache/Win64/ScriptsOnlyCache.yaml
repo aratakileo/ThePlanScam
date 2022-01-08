@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor-firstpass.dll:
-    - NaughtyAttributes.Editor.InspectorEditor
     Assembly-CSharp.dll:
     - Pexty.CameraBreathing
     - Pexty.CameraController
@@ -18,6 +16,8 @@ ScriptsOnlyBuild:
     - Pexty.StaminaController
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.Editor.dll:
+    - TMPro.TMP_SpriteAssetImporter
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -57,8 +57,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
@@ -68,51 +66,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1512}
+      Script: {instanceID: 1514}
     - Class: 114
-      Script: {instanceID: 1572}
+      Script: {instanceID: 1576}
     - Class: 114
-      Script: {instanceID: 1618}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 1692}
+      Script: {instanceID: 1696}
     - Class: 114
-      Script: {instanceID: 1774}
+      Script: {instanceID: 1778}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2082}
     - Class: 114
-      Script: {instanceID: 2326}
+      Script: {instanceID: 2346}
     - Class: 114
-      Script: {instanceID: 2398}
+      Script: {instanceID: 2420}
     - Class: 114
-      Script: {instanceID: 2568}
+      Script: {instanceID: 2594}
     - Class: 114
-      Script: {instanceID: 2704}
+      Script: {instanceID: 2602}
     - Class: 114
-      Script: {instanceID: 3160}
+      Script: {instanceID: 2740}
     - Class: 114
-      Script: {instanceID: 3410}
+      Script: {instanceID: 3202}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 3456}
     - Class: 114
-      Script: {instanceID: 3776}
+      Script: {instanceID: 3620}
     - Class: 114
-      Script: {instanceID: 3918}
+      Script: {instanceID: 3824}
     - Class: 114
-      Script: {instanceID: 4018}
+      Script: {instanceID: 3966}
     - Class: 114
-      Script: {instanceID: 4134}
+      Script: {instanceID: 4068}
     - Class: 114
-      Script: {instanceID: 4300}
+      Script: {instanceID: 4184}
     - Class: 114
-      Script: {instanceID: 4306}
+      Script: {instanceID: 4354}
     - Class: 114
-      Script: {instanceID: 4368}
+      Script: {instanceID: 4360}
     - Class: 114
-      Script: {instanceID: 4658}
+      Script: {instanceID: 4430}
     - Class: 114
-      Script: {instanceID: 16206}
+      Script: {instanceID: 4730}
     - Class: 114
-      Script: {instanceID: 16518}
+      Script: {instanceID: 16176}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -316,6 +314,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 106d6a3956f57b6c49808662c4127d44
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Pexty
+    className: StaminaController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -688,12 +692,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 106d6a3956f57b6c49808662c4127d44
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Pexty
-    className: StaminaController
   platform: 19
   scenePathNames:
   - Assets/scenes/mainScene.unity
