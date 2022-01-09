@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - UnityEngine.AI.NavMeshSurface
     Assembly-CSharp.dll:
     - Pexty.CameraBreathing
     - Pexty.CameraController
@@ -55,9 +57,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -68,52 +78,58 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1514}
     - Class: 114
-      Script: {instanceID: 1576}
+      Script: {instanceID: 1520}
     - Class: 114
-      Script: {instanceID: 1622}
+      Script: {instanceID: 1578}
     - Class: 114
-      Script: {instanceID: 1696}
+      Script: {instanceID: 1624}
     - Class: 114
-      Script: {instanceID: 1778}
+      Script: {instanceID: 1698}
     - Class: 114
-      Script: {instanceID: 2082}
+      Script: {instanceID: 1780}
     - Class: 114
-      Script: {instanceID: 2346}
+      Script: {instanceID: 2084}
     - Class: 114
-      Script: {instanceID: 2420}
+      Script: {instanceID: 2348}
     - Class: 114
-      Script: {instanceID: 2594}
+      Script: {instanceID: 2422}
     - Class: 114
-      Script: {instanceID: 2602}
+      Script: {instanceID: 2598}
     - Class: 114
-      Script: {instanceID: 2740}
+      Script: {instanceID: 2606}
     - Class: 114
-      Script: {instanceID: 3202}
+      Script: {instanceID: 2744}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3210}
     - Class: 114
-      Script: {instanceID: 3620}
+      Script: {instanceID: 3464}
     - Class: 114
-      Script: {instanceID: 3824}
+      Script: {instanceID: 3630}
     - Class: 114
-      Script: {instanceID: 3966}
+      Script: {instanceID: 3834}
     - Class: 114
-      Script: {instanceID: 4068}
+      Script: {instanceID: 3978}
     - Class: 114
-      Script: {instanceID: 4184}
+      Script: {instanceID: 4080}
     - Class: 114
-      Script: {instanceID: 4354}
+      Script: {instanceID: 4196}
     - Class: 114
-      Script: {instanceID: 4360}
+      Script: {instanceID: 4368}
     - Class: 114
-      Script: {instanceID: 4430}
+      Script: {instanceID: 4374}
     - Class: 114
-      Script: {instanceID: 4730}
+      Script: {instanceID: 4444}
     - Class: 114
-      Script: {instanceID: 16176}
+      Script: {instanceID: 4748}
+    - Class: 114
+      Script: {instanceID: 16250}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
@@ -128,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
@@ -146,6 +164,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 8d4458b476a9a4dd8df843a849fcfffa
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityEngine.AI
+    className: NavMeshSurface
   - hash:
       serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
@@ -334,6 +358,12 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 7299a528424874bcf6b5736b5305ac37
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityEngine.AI
+    className: NavMeshModifierVolume
+  - hash:
+      serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -514,6 +544,12 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: c8c672fee8a258266e51b55a210b8083
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityEngine.AI
+    className: NavMeshLink
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -566,6 +602,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: InteractionInputData
+  - hash:
+      serializedVersion: 2
+      Hash: 2b19be13f00df62e6d4d4f5539bcad51
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityEngine.AI
+    className: NavMeshModifier
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
