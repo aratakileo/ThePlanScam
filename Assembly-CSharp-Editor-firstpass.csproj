@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,79 +53,82 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\PropertyValidatorDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\TagPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\NativePropertyDrawerDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\ProgressBarPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyValidators\ValidateInputPropertyValidator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyValidators\RequiredPropertyValidator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\PropertyGrouperAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyMetas\InfoBoxPropertyMeta.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\PropertyMetaAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\IAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\MethodDrawers\ButtonMethodDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyMetas\OnValueChangedPropertyMeta.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\MethodDrawerDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\EnableIfPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\PropertyMetaDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\ReadOnlyPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Utility\PropertyUtility.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\MethodDrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyValidators\MaxValuePropertyValidator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\MethodDrawers\MethodDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\FieldDrawers\FieldDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Utility\EditorDrawUtility.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\NativePropertyDrawers\NativePropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\PropertyDrawConditionDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\ResizableTextAreaPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\FieldDrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\PropertyGrouperDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\DisableIfPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\PropertyDrawerDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\MinMaxSliderPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\LabelPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawConditions\ShowIfPropertyDrawCondition.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\FieldDrawerDatabase.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyGroupers\BoxGroupPropertyGrouper.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\DropdownPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyValidators\PropertyValidator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\ShowAssetPreviewPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyMetas\PropertyMeta.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Utility\IOUtility.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\SliderPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\CodeGenerator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawConditions\HideIfPropertyDrawCondition.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyGroupers\PropertyGrouper.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\ReorderableListPropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\PropertyDrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawers\PropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyValidators\MinValuePropertyValidator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\FieldDrawers\ShowNonSerializedFieldFieldDrawer.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Utility\ReflectionUtility.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\PropertyValidatorAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\NativePropertyDrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\PropertyDrawConditionAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Attributes\BaseAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\PropertyDrawConditions\PropertyDrawCondition.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\Editors\InspectorEditor.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\NativePropertyDrawers\ShowNativePropertyNativePropertyDrawer.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshComponentsGUIUtility.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshSurfaceEditor.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshLinkEditor.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierEditor.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierVolumeEditor.cs" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\MethodDrawerDatabaseTemplate.txt" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\PropertyValidatorDatabaseTemplate.txt" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\PropertyDrawerDatabaseTemplate.txt" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\PropertyDrawConditionDatabaseTemplate.txt" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\FieldDrawerDatabaseTemplate.txt" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyValidatorDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\TagPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\NativePropertyDrawerDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ProgressBarPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyValidators\ValidateInputPropertyValidator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyValidators\RequiredPropertyValidator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyGrouperAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyMetas\InfoBoxPropertyMeta.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyMetaAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\IAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\MethodDrawers\ButtonMethodDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyMetas\OnValueChangedPropertyMeta.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\MethodDrawerDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\EnableIfPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyMetaDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ReadOnlyPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\PropertyUtility.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\MethodDrawerAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyValidators\MaxValuePropertyValidator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\MethodDrawers\MethodDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\FieldDrawers\FieldDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\EditorDrawUtility.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshLinkEditor.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\NativePropertyDrawers\NativePropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyDrawConditionDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ResizableTextAreaPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\FieldDrawerAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyGrouperDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\DisableIfPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyDrawerDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\MinMaxSliderPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\LabelPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawConditions\ShowIfPropertyDrawCondition.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierEditor.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\FieldDrawerDatabase.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyGroupers\BoxGroupPropertyGrouper.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\DropdownPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyValidators\PropertyValidator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ShowAssetPreviewPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyMetas\PropertyMeta.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\IOUtility.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\SliderPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\CodeGenerator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawConditions\HideIfPropertyDrawCondition.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyGroupers\PropertyGrouper.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ReorderableListPropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyDrawerAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\PropertyDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyValidators\MinValuePropertyValidator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\FieldDrawers\ShowNonSerializedFieldFieldDrawer.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\ReflectionUtility.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyValidatorAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\NativePropertyDrawerAttribute.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshComponentsGUIUtility.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyDrawConditionAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\BaseAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawConditions\PropertyDrawCondition.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshSurfaceEditor.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierVolumeEditor.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Editors\InspectorEditor.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\NativePropertyDrawers\ShowNativePropertyNativePropertyDrawer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\MethodDrawerDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\PropertyValidatorDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\PropertyDrawerDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\PropertyDrawConditionDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\FieldDrawerDatabaseTemplate.txt" />
     <None Include="Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\NativePropertyDrawerDbTemplate.txt" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\PropertyMetaDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\NativePropertyDrawerDbTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\PropertyMetaDatabaseTemplate.txt" />
     <None Include="Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
-    <None Include="Assets\Plugins\NaughtyAttributes\Scripts\Editor\CodeGeneration\Templates\PropertyGrouperDatabaseTemplate.txt" />
+    <None Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\Templates\PropertyGrouperDatabaseTemplate.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

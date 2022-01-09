@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 
@@ -91,6 +92,7 @@ namespace Pexty
                     private Transform m_camTransform;
                     private HeadBob m_headBob;
                     private CameraController m_cameraController;
+                    private AudioSource audioSource;
                     
                     private RaycastHit m_hitInfo;
                     private IEnumerator m_CrouchRoutine;
@@ -151,6 +153,9 @@ namespace Pexty
 
             protected virtual void Update()
             {
+                if (!audioSource.isPlaying && m_isGrounded && movementInputData.HasInput) audioSource.Play();
+                else audioSource.Stop();
+
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
 
@@ -204,6 +209,7 @@ namespace Pexty
                 protected virtual void GetComponents()
                 {
                     m_characterController = GetComponent<CharacterController>();
+                    audioSource = GetComponent<AudioSource>();
                     m_cameraController = GetComponentInChildren<CameraController>();
                     m_yawTransform = m_cameraController.transform;
                     m_camTransform = GetComponentInChildren<Camera>().transform;

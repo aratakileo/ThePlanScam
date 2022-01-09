@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,48 +53,51 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ValidatorAttributes\MaxValueAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ShowNativePropertyAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\MinMaxSliderAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ValidatorAttributes\MinValueAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ProgressBarAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\MetaAttributes\MetaAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ShowNonSerializedFieldAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ConditionOperator.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ValidatorAttributes\ValidateInputAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawConditionAttributes\DrawConditionAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ShowAssetPreviewAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ReorderableListAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ValidatorAttributes\ValidatorAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ButtonAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\TagAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\ValidatorAttributes\RequiredAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\GroupAttributes\GroupAttribute.cs" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ValidatorAttributes\MaxValueAttribute.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ShowNativePropertyAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\MinMaxSliderAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ValidatorAttributes\MinValueAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ProgressBarAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\MetaAttributes\MetaAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ShowNonSerializedFieldAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ConditionOperator.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ValidatorAttributes\ValidateInputAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawConditionAttributes\DrawConditionAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ShowAssetPreviewAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ReorderableListAttribute.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ValidatorAttributes\ValidatorAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ButtonAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\TagAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\ValidatorAttributes\RequiredAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\GroupAttributes\GroupAttribute.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ReadOnlyAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawConditionAttributes\ShowIfAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\NaughtyAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\DropdownAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\DisableIfAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ReadOnlyAttribute.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawConditionAttributes\ShowIfAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\NaughtyAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\DropdownAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\DisableIfAttribute.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\MetaAttributes\OnValueChangedAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\MetaAttributes\OnValueChangedAttribute.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\LabelAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\ResizableTextAreaAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\LabelAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\ResizableTextAreaAttribute.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\EnableIfAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawConditionAttributes\HideIfAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\EnableIfAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawConditionAttributes\HideIfAttribute.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\MetaAttributes\InfoBoxAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\SliderAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\DrawerAttributes\DrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\NaughtyAttributes\Scripts\Core\GroupAttributes\BoxGroupAttribute.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshModifier.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshLink.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshModifierVolume.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\MetaAttributes\InfoBoxAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\SliderAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\DrawerAttributes\DrawerAttribute.cs" />
+    <Compile Include="Assets\Plugins\NaughtyAttributes\Core\GroupAttributes\BoxGroupAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
