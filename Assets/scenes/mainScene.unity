@@ -895,8 +895,9 @@ GameObject:
   - component: {fileID: 651059201}
   - component: {fileID: 651059200}
   - component: {fileID: 651059199}
-  - component: {fileID: 651059204}
   - component: {fileID: 651059205}
+  - component: {fileID: 651059206}
+  - component: {fileID: 651059204}
   m_Layer: 0
   m_Name: FPS
   m_TagString: Untagged
@@ -953,7 +954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   headBobData: {fileID: 11400000, guid: fd51ede42cc20a04da93c2d2fac1e05c, type: 2}
-  staminaController: {fileID: 651059204}
+  staminaController: {fileID: 651059206}
   crouchSpeed: 1
   walkSpeed: 3
   runSpeed: 6
@@ -1078,7 +1079,6 @@ MonoBehaviour:
   m_walkRunSpeedDifference: 0
   m_finalRayLength: 0
   m_hitWall: 0
-  m_isGrounded: 0
   m_previouslyGrounded: 0
   m_initHeight: 0
   m_crouchHeight: 0
@@ -1134,12 +1134,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 651059198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32eb240fc7bf3bb4b90046de801fdda3, type: 3}
+  m_Script: {fileID: 11500000, guid: 89d19c36805e56f41bd96589009c1234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
-  m_maxValue: 7
-  cooldown: 1
+  audioSource: {fileID: 651059205}
+  stepSongs:
+  - {fileID: 8300000, guid: d030d3e025d4b86439067c50a8cad192, type: 3}
+  - {fileID: 8300000, guid: 55b58263871f04c41bc52cd666b4f84f, type: 3}
+  - {fileID: 8300000, guid: 82f0a38387a458140ba7308d7f9da1cd, type: 3}
+  - {fileID: 8300000, guid: ccd7e780c1cf78647bdf080921df7ac7, type: 3}
+  - {fileID: 8300000, guid: be00dbcaf143d4f428fec8bddb4047b0, type: 3}
+  - {fileID: 8300000, guid: 507cb4f9ebaeabb4b920ceaca7461f1b, type: 3}
+  walkingStepDuration: 0.4
+  runningStepDuration: 0.2
 --- !u!82 &651059205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1154,7 +1162,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1236,6 +1244,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &651059206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651059198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eb240fc7bf3bb4b90046de801fdda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
+  m_maxValue: 7
+  cooldown: 1
 --- !u!1001 &705844117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1971,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee022112fbb62d4f8fcb4a95ef45cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaController: {fileID: 651059204}
+  staminaController: {fileID: 651059206}
   slider: {fileID: 1470560833}
   rectTransform: {fileID: 490624659}
   progressImage: {fileID: 490624660}

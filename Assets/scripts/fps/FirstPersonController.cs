@@ -8,9 +8,6 @@ namespace Pexty
     [RequireComponent(typeof(CharacterController))]
     public class FirstPersonController : MonoBehaviour
     {
-        private static float steptime = 0.5f;
-        private float timer = steptime;
-
         #region Variables
             #region Private Serialized     
                 #region Data
@@ -122,7 +119,6 @@ namespace Pexty
                     [Space]
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_finalRayLength;
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_hitWall;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_isGrounded;
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_previouslyGrounded;
 
                     [Space]
@@ -156,13 +152,10 @@ namespace Pexty
 
             protected virtual void Update()
             {
-                if (timer < steptime) timer += Time.deltaTime;
-
-                if (!audioSource.isPlaying && m_isGrounded && movementInputData.HasInput && timer >= steptime) {
-                    audioSource.Play();
-                    timer = 0f;
+                if (transform.position.y <= -50f) {
+                    transform.position = Vector3.zero;
+                    return;
                 }
-                else audioSource.Stop();
 
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
@@ -196,7 +189,7 @@ namespace Pexty
                     ApplyGravity();
                     ApplyMovement();
 
-                    m_previouslyGrounded = m_isGrounded;
+                    m_previouslyGrounded = movementInputData.IsGrounded;
                 }
             }
 
@@ -243,7 +236,7 @@ namespace Pexty
                     // Sphere radius not included. If you want it to be included just decrease by sphere radius at the end of this equation
                     m_finalRayLength = rayLength + m_characterController.center.y;
 
-                    m_isGrounded = true;
+                    movementInputData.IsGrounded = true;
                     m_previouslyGrounded = true;
 
                     m_inAirTimer = 0f;
@@ -298,7 +291,7 @@ namespace Pexty
                     bool _hitGround = Physics.SphereCast(_origin,raySphereRadius,Vector3.down,out m_hitInfo,m_finalRayLength,groundLayer);
                     Debug.DrawRay(_origin, Vector3.down * (m_finalRayLength), Color.red);
 
-                    m_isGrounded = _hitGround;
+                    movementInputData.IsGrounded = _hitGround;
                 }
 
                 protected virtual void CheckIfWall()
@@ -351,7 +344,7 @@ namespace Pexty
 
                 protected virtual Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
                 {
-                    if (m_isGrounded) _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
+                    if (movementInputData.IsGrounded) _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
                     
                     return _vectorToFlat;
                 }
@@ -382,7 +375,7 @@ namespace Pexty
             #region Crouching Methods
                 protected virtual void HandleCrouch()
                 {
-                    if(movementInputData.CrouchClicked && m_isGrounded)
+                    if(movementInputData.CrouchClicked && movementInputData.IsGrounded)
                         InvokeCrouchRoutine();
                 }
 
@@ -445,7 +438,7 @@ namespace Pexty
             #region Landing Methods
                 protected virtual void HandleLanding()
                 {
-                    if(!m_previouslyGrounded && m_isGrounded)
+                    if(!m_previouslyGrounded && movementInputData.IsGrounded)
                     {
                         InvokeLandingRoutine();
                     }
@@ -490,7 +483,7 @@ namespace Pexty
                 protected virtual void HandleHeadBob()
                 {
                     
-                    if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
+                    if(movementInputData.HasInput && movementInputData.IsGrounded  && !m_hitWall)
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
@@ -519,7 +512,7 @@ namespace Pexty
 
                 protected virtual void HandleRunFOV()
                 {
-                    if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
+                    if(movementInputData.HasInput && movementInputData.IsGrounded  && !m_hitWall)
                     {
                         if(movementInputData.RunClicked && CanRun())
                         {
@@ -551,7 +544,7 @@ namespace Pexty
                         m_finalMoveVector.y = jumpSpeed /* m_currentSpeed */; // turns out that when adding to Y it is too much and it doesn't feel correct because jumping on slope is much faster and higher;
                     
                         m_previouslyGrounded = true;
-                        m_isGrounded = false;
+                        movementInputData.IsGrounded = false;
                     }
                 }
                 protected virtual void ApplyGravity()

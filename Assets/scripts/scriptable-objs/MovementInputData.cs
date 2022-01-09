@@ -8,6 +8,7 @@ namespace Pexty
         #region Data
             Vector2 m_inputVector;
 
+            bool m_isGrounded;
             bool m_isRunning;
             bool m_isCrouching;
 
@@ -29,6 +30,12 @@ namespace Pexty
             public float InputVectorY
             {
                 set => m_inputVector.y = value;
+            }
+
+            public bool IsGrounded
+            {
+                get => m_isGrounded;
+                set => m_isGrounded = value;
             }
 
             public bool IsRunning
