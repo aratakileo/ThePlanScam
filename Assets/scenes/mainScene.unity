@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   audioSource: {fileID: 651059205}
-  stepSongs:
+  stepSounds:
   - {fileID: 8300000, guid: d030d3e025d4b86439067c50a8cad192, type: 3}
   - {fileID: 8300000, guid: 55b58263871f04c41bc52cd666b4f84f, type: 3}
   - {fileID: 8300000, guid: 82f0a38387a458140ba7308d7f9da1cd, type: 3}

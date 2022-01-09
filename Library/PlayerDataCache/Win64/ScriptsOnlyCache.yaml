@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp-firstpass.dll:
     - UnityEngine.AI.NavMeshSurface
     Assembly-CSharp.dll:
+    - Pexty.AudioController
     - Pexty.CameraBreathing
     - Pexty.CameraController
     - Pexty.CameraInputData
@@ -123,6 +124,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4748}
     - Class: 114
       Script: {instanceID: 16250}
+    - Class: 114
+      Script: {instanceID: 26636}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -664,7 +667,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 8c9e23608c920666b29934e4430ed8ce
+      Hash: 59c4c6f918a1ebd4770d965e3887283b
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: FirstPersonController
@@ -734,6 +737,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: cbc2047dd5cb316585fafa3a72a06c81
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Pexty
+    className: AudioController
   platform: 19
   scenePathNames:
   - Assets/scenes/mainScene.unity
