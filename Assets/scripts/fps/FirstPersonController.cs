@@ -8,6 +8,9 @@ namespace Pexty
     [RequireComponent(typeof(CharacterController))]
     public class FirstPersonController : MonoBehaviour
     {
+        private static float steptime = 0.5f;
+        private float timer = steptime;
+
         #region Variables
             #region Private Serialized     
                 #region Data
@@ -153,7 +156,12 @@ namespace Pexty
 
             protected virtual void Update()
             {
-                if (!audioSource.isPlaying && m_isGrounded && movementInputData.HasInput) audioSource.Play();
+                if (timer < steptime) timer += Time.deltaTime;
+
+                if (!audioSource.isPlaying && m_isGrounded && movementInputData.HasInput && timer >= steptime) {
+                    audioSource.Play();
+                    timer = 0f;
+                }
                 else audioSource.Stop();
 
                 if(m_yawTransform != null)
