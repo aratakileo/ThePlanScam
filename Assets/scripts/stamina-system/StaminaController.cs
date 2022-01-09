@@ -10,9 +10,9 @@ namespace Pexty
                 [SerializeField] private MovementInputData movementInputData = null;
             #endregion
 
-            #region Seetings
+            #region Settings
                 [Space, Header("Settings")]
-                [SerializeField] private float m_maxValue = 5f;
+                [SerializeField] private float m_maxValue = 7f;
                 [SerializeField] private float cooldown = 1f;
         #endregion
 
