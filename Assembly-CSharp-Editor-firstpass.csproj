@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyValidatorDatabase.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\TagPropertyDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\NativePropertyDrawerDatabase.cs" />
@@ -78,7 +75,6 @@
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\MethodDrawers\MethodDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\FieldDrawers\FieldDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\EditorDrawUtility.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshLinkEditor.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\NativePropertyDrawers\NativePropertyDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\PropertyDrawConditionDatabase.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\ResizableTextAreaPropertyDrawer.cs" />
@@ -89,7 +85,6 @@
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\MinMaxSliderPropertyDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\LabelPropertyDrawer.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawConditions\ShowIfPropertyDrawCondition.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierEditor.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\CodeGeneration\FieldDrawerDatabase.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyGroupers\BoxGroupPropertyGrouper.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawers\DropdownPropertyDrawer.cs" />
@@ -109,12 +104,9 @@
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Utility\ReflectionUtility.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyValidatorAttribute.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\NativePropertyDrawerAttribute.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshComponentsGUIUtility.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\PropertyDrawConditionAttribute.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Attributes\BaseAttribute.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\PropertyDrawConditions\PropertyDrawCondition.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshSurfaceEditor.cs" />
-    <Compile Include="Assets\Plugins\Nav Mesh\Editor\NavMeshModifierVolumeEditor.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\Editors\InspectorEditor.cs" />
     <Compile Include="Assets\Plugins\NaughtyAttributes\Editor\NativePropertyDrawers\ShowNativePropertyNativePropertyDrawer.cs" />
   </ItemGroup>
