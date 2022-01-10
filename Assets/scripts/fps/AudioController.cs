@@ -41,20 +41,22 @@ namespace Pexty
                 
                 if (stepTimer < currentStepDuration) stepTimer += Time.deltaTime;
 
-                if (firstPersonController.IsGrounded && (movementInputData.HasInput || !prevIsGrounded)) // triggered if the player moves, starts or finishes a jump, lands on the surface
+                if (
+                        firstPersonController.IsGrounded && (movementInputData.HasInput || !prevIsGrounded) // triggered if the player moves, starts or finishes a jump, lands on the surface
+                        &&
+                        stepTimer >= currentStepDuration
+                   ) 
                 {
-                    if (stepTimer >= currentStepDuration) {
+                    if(Random.Range(0f, 1f) >= 0.5f || stepSkipped || firstPersonController.IsGrounded && !prevIsGrounded) { 
                         // can skip no more than 1 step in a row
 
-                        if(Random.Range(0f, 1f) >= 0.5f || stepSkipped || firstPersonController.IsGrounded && !prevIsGrounded) { 
-                            audioSource.clip = stepSounds[Random.Range(0, stepSounds.Length)];
-                            audioSource.Play();
-                            stepSkipped = false;
-                        }
-                        else stepSkipped = true;
-
-                        stepTimer = 0f;
+                        audioSource.clip = stepSounds[Random.Range(0, stepSounds.Length)];
+                        audioSource.Play();
+                        stepSkipped = false;
                     }
+                    else stepSkipped = true;
+
+                    stepTimer = 0f;
                 }
 
                 prevIsGrounded = firstPersonController.IsGrounded;
