@@ -119,6 +119,7 @@ namespace Pexty
                     [Space]
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_finalRayLength;
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_hitWall;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_grounded;
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_previouslyGrounded;
 
                     [Space]
@@ -189,7 +190,7 @@ namespace Pexty
                     ApplyGravity();
                     ApplyMovement();
 
-                    m_previouslyGrounded = movementInputData.IsGrounded;
+                    m_previouslyGrounded = m_grounded;
                 }
             }
 
@@ -236,7 +237,7 @@ namespace Pexty
                     // Sphere radius not included. If you want it to be included just decrease by sphere radius at the end of this equation
                     m_finalRayLength = rayLength + m_characterController.center.y;
 
-                    movementInputData.IsGrounded = true;
+                    m_grounded = true;
                     m_previouslyGrounded = true;
 
                     m_inAirTimer = 0f;
@@ -291,7 +292,7 @@ namespace Pexty
                     bool _hitGround = Physics.SphereCast(_origin,raySphereRadius,Vector3.down,out m_hitInfo,m_finalRayLength,groundLayer);
                     Debug.DrawRay(_origin, Vector3.down * (m_finalRayLength), Color.red);
 
-                    movementInputData.IsGrounded = _hitGround;
+                    m_grounded = _hitGround;
                 }
 
                 protected virtual void CheckIfWall()
@@ -327,7 +328,7 @@ namespace Pexty
                         _normalizedDir = m_smoothFinalMoveDir.normalized;
 
                     float _dot = Vector3.Dot(transform.forward, _normalizedDir);
-                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && staminaController.canRun;
+                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && staminaController.CanRun;
                 }
 
                 protected virtual void CalculateMovementDirection()
@@ -344,7 +345,7 @@ namespace Pexty
 
                 protected virtual Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
                 {
-                    if (movementInputData.IsGrounded) _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
+                    if (m_grounded) _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat, m_hitInfo.normal);
                     
                     return _vectorToFlat;
                 }
@@ -375,7 +376,7 @@ namespace Pexty
             #region Crouching Methods
                 protected virtual void HandleCrouch()
                 {
-                    if(movementInputData.CrouchClicked && movementInputData.IsGrounded)
+                    if(movementInputData.CrouchClicked && m_grounded)
                         InvokeCrouchRoutine();
                 }
 
@@ -438,7 +439,7 @@ namespace Pexty
             #region Landing Methods
                 protected virtual void HandleLanding()
                 {
-                    if(!m_previouslyGrounded && movementInputData.IsGrounded)
+                    if(!m_previouslyGrounded && m_grounded)
                     {
                         InvokeLandingRoutine();
                     }
@@ -483,7 +484,7 @@ namespace Pexty
                 protected virtual void HandleHeadBob()
                 {
                     
-                    if(movementInputData.HasInput && movementInputData.IsGrounded  && !m_hitWall)
+                    if(movementInputData.HasInput && m_grounded  && !m_hitWall)
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
@@ -512,7 +513,7 @@ namespace Pexty
 
                 protected virtual void HandleRunFOV()
                 {
-                    if(movementInputData.HasInput && movementInputData.IsGrounded  && !m_hitWall)
+                    if(movementInputData.HasInput && m_grounded  && !m_hitWall)
                     {
                         if(movementInputData.RunClicked && CanRun())
                         {
@@ -544,7 +545,7 @@ namespace Pexty
                         m_finalMoveVector.y = jumpSpeed /* m_currentSpeed */; // turns out that when adding to Y it is too much and it doesn't feel correct because jumping on slope is much faster and higher;
                     
                         m_previouslyGrounded = true;
-                        movementInputData.IsGrounded = false;
+                        m_grounded = false;
                     }
                 }
                 protected virtual void ApplyGravity()
@@ -575,6 +576,12 @@ namespace Pexty
 
                     transform.rotation = Quaternion.Slerp(_currentRot, _desiredRot, Time.deltaTime * smoothRotateSpeed);
                 }
+
+                public bool IsGrounded => m_grounded;
+                public bool IsMoving => movementInputData.HasInput && IsGrounded;
+                public bool IsCrouching => IsMoving && movementInputData.IsCrouching;
+                public bool IsWalking => IsMoving && !IsCrouching && !IsRunning;
+                public bool IsRunning => IsGrounded && movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y > 0f && staminaController.CanRun;
             #endregion
         #endregion
     }

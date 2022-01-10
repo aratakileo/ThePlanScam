@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Pexty
@@ -7,6 +8,7 @@ namespace Pexty
         #region Variables
             #region Data
                 [Space, Header("Data")]
+                [SerializeField] private FirstPersonController firstPersonController;
                 [SerializeField] private MovementInputData movementInputData = null;
             #endregion
 
@@ -33,9 +35,9 @@ namespace Pexty
             // Update is called once per frame
             void Update()
             {
-                if (m_value > m_maxValue) m_value = m_maxValue;
-                if (m_value < 0) m_value = 0;
-                if (m_value > 0 && isRunning && !isRestoring) m_value -= Time.deltaTime;
+                m_value = Math.Min(m_maxValue, Math.Max(0, m_value)); // 0 <= m_value <= m_maxValue
+
+                if (m_value > 0 && firstPersonController.IsRunning) m_value -= Time.deltaTime; // stamina decreasing
                 if (m_value == 0) isRestoring = true;
 
                 if (m_value == m_maxValue)
@@ -47,19 +49,18 @@ namespace Pexty
                 if (isRestoring)
                 {
                     if (cooldownDuration < cooldown) cooldownDuration += Time.deltaTime;
-                    else m_value += Time.deltaTime;
+                    else m_value += Time.deltaTime; // stamina increasing
                 }
 
-                if (m_value < m_maxValue && !isRunning && !isRestoring) m_value += Time.deltaTime;
+                if (m_value < m_maxValue && !firstPersonController.IsRunning && !isRestoring) m_value += Time.deltaTime; // stamina increasing
             }
         #endregion
 
         #region Custom Methods
-            private bool isRunning => movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y > 0f;
-            public bool canRun => !isRestoring;
+            public bool CanRun => !isRestoring;
 
-            public float value => m_value;
-            public float maxValue
+            public float Value => m_value;
+            public float MaxValue
             {
                 get => m_maxValue;
                 set => m_maxValue = value;

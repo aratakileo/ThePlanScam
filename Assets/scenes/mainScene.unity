@@ -1079,6 +1079,7 @@ MonoBehaviour:
   m_walkRunSpeedDifference: 0
   m_finalRayLength: 0
   m_hitWall: 0
+  m_grounded: 0
   m_previouslyGrounded: 0
   m_initHeight: 0
   m_crouchHeight: 0
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d19c36805e56f41bd96589009c1234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstPersonController: {fileID: 651059201}
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   audioSource: {fileID: 651059205}
   stepSounds:
@@ -1146,6 +1148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ccd7e780c1cf78647bdf080921df7ac7, type: 3}
   - {fileID: 8300000, guid: be00dbcaf143d4f428fec8bddb4047b0, type: 3}
   - {fileID: 8300000, guid: 507cb4f9ebaeabb4b920ceaca7461f1b, type: 3}
+  crouchingStepDuration: 0.7
   walkingStepDuration: 0.4
   runningStepDuration: 0.2
 --- !u!82 &651059205
@@ -1166,7 +1169,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1256,6 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eb240fc7bf3bb4b90046de801fdda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstPersonController: {fileID: 651059201}
   movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   m_maxValue: 7
   cooldown: 1
@@ -1276,7 +1280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d073588c01028ca4b88dbf3eaad39456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d073588c01028ca4b88dbf3eaad39456, type: 3}
       propertyPath: m_LocalPosition.z

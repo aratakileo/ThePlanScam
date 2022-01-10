@@ -16,20 +16,10 @@ namespace Pexty
         private static int MIDDLE_COLOR = 0xEA9727;
         private static int DANGER_COLOR = 0xD21711;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            slider.maxValue = staminaController.maxValue;
-        }
-
         // Update is called once per frame
         void Update()
         {
-            slider.maxValue = staminaController.maxValue;
-            slider.value = staminaController.value;
-
-            // Show stamina progress by center
-            float percent = slider.value / slider.maxValue;
+            float percent = staminaController.Value / staminaController.MaxValue;
 
             if (percent > 0.65f) progressImage.color = ColorUtil.fromRgb(DEFAULT_COLOR);
             if (percent <= 0.65f) progressImage.color = ColorUtil.fromRgb(MIDDLE_COLOR);
