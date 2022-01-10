@@ -343,7 +343,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 106d6a3956f57b6c49808662c4127d44
+      Hash: 9c32d37aad03d2ba1812fd327400ee6c
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: StaminaController
@@ -667,7 +667,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 59c4c6f918a1ebd4770d965e3887283b
+      Hash: 4cbab723c43cd3f7d040758215feb640
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: FirstPersonController
@@ -739,7 +739,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: cbc2047dd5cb316585fafa3a72a06c81
+      Hash: cb9a0368339e8aace9d30eff0ff4acac
     assemblyName: Assembly-CSharp.dll
     namespaceName: Pexty
     className: AudioController
