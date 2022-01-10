@@ -3,10 +3,3 @@ Logs
 UserSettings
 .vs
 .vsconfig
-Assembly-CSharp-firstpass.csproj
-Assembly-CSharp-Editor-firstpass.csproj
-Assembly-CSharp.csproj
-Library\SceneVisibilityState.asset
-Library\ArtifactDB
-Library\CurrentLayout-default.dwlt
-Library\ScriptAssemblies
