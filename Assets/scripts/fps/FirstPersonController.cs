@@ -15,6 +15,7 @@ namespace Pexty
                     [SerializeField] private MovementInputData movementInputData = null;
                     [SerializeField] private HeadBobData headBobData = null;
                     [SerializeField] private StaminaController staminaController = null;
+                    [SerializeField] private WorldBehaviour worldBehaviour;
 
                 #endregion
                     
@@ -154,7 +155,7 @@ namespace Pexty
             protected virtual void Update()
             {
                 if (transform.position.y <= -50f) {
-                    transform.position = Vector3.zero;
+                    transform.position = worldBehaviour.worldSpawnPosition;
                     return;
                 }
 
@@ -172,8 +173,7 @@ namespace Pexty
                     SmoothSpeed();
                     SmoothDir();
 
-                    if(experimental)
-                        SmoothInputMagnitude();
+                    if(experimental) SmoothInputMagnitude();
 
                     // Calculate Movement
                     CalculateMovementDirection();
@@ -250,8 +250,8 @@ namespace Pexty
             #region Smoothing Methods
                 protected virtual void SmoothInput()
                 {
-                    m_inputVector = movementInputData.InputVector.normalized;
-                    m_smoothInputVector = Vector2.Lerp(m_smoothInputVector,m_inputVector,Time.deltaTime * smoothInputSpeed);
+                    m_inputVector = movementInputData.inputVector.normalized;
+                    m_smoothInputVector = Vector2.Lerp(m_smoothInputVector, m_inputVector, Time.deltaTime * smoothInputSpeed);
                     //Debug.DrawRay(transform.position, new Vector3(m_smoothInputVector.x,0f,m_smoothInputVector.y), Color.green);
                 }
 
@@ -259,7 +259,7 @@ namespace Pexty
                 {
                     m_smoothCurrentSpeed = Mathf.Lerp(m_smoothCurrentSpeed, m_currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-                    if(movementInputData.IsRunning && CanRun())
+                    if(movementInputData.isRunning && canRun)
                     {
                         float _walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, m_smoothCurrentSpeed);
                         m_finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(_walkRunPercent) * m_walkRunSpeedDifference + walkSpeed;
@@ -289,7 +289,7 @@ namespace Pexty
                 {
                     Vector3 _origin = transform.position + m_characterController.center;
 
-                    bool _hitGround = Physics.SphereCast(_origin,raySphereRadius,Vector3.down,out m_hitInfo,m_finalRayLength,groundLayer);
+                    bool _hitGround = Physics.SphereCast(_origin,raySphereRadius, Vector3.down, out m_hitInfo, m_finalRayLength,groundLayer);
                     Debug.DrawRay(_origin, Vector3.down * (m_finalRayLength), Color.red);
 
                     m_grounded = _hitGround;
@@ -303,7 +303,7 @@ namespace Pexty
 
                     bool _hitWall = false;
 
-                    if(movementInputData.HasInput && m_finalMoveDir.sqrMagnitude > 0)
+                    if(movementInputData.hasInput && m_finalMoveDir.sqrMagnitude > 0)
                         _hitWall = Physics.SphereCast(_origin, rayObstacleSphereRadius, m_finalMoveDir, out _wallInfo, rayObstacleLength, obstacleLayers);
                     Debug.DrawRay(_origin, m_finalMoveDir * rayObstacleLength, Color.blue);
 
@@ -315,20 +315,21 @@ namespace Pexty
                     Vector3 _origin = transform.position;
                     RaycastHit _roofInfo;
 
-                    bool _hitRoof = Physics.SphereCast(_origin, raySphereRadius, Vector3.up, out _roofInfo, m_initHeight);
-
-                    return _hitRoof;
+                    return Physics.SphereCast(_origin, raySphereRadius, Vector3.up, out _roofInfo, m_initHeight);
                 }
 
-                protected virtual bool CanRun()
+                protected virtual bool canRun
                 {
-                    Vector3 _normalizedDir = Vector3.zero;
+                    get
+                    {
+                        Vector3 _normalizedDir = Vector3.zero;
 
-                    if(m_smoothFinalMoveDir != Vector3.zero)
-                        _normalizedDir = m_smoothFinalMoveDir.normalized;
+                        if (m_smoothFinalMoveDir != Vector3.zero)
+                            _normalizedDir = m_smoothFinalMoveDir.normalized;
 
-                    float _dot = Vector3.Dot(transform.forward, _normalizedDir);
-                    return _dot >= canRunThreshold && !movementInputData.IsCrouching && staminaController.CanRun;
+                        float _dot = Vector3.Dot(transform.forward, _normalizedDir);
+                        return _dot >= canRunThreshold && !movementInputData.isCrouching && staminaController.canRun;
+                    }
                 }
 
                 protected virtual void CalculateMovementDirection()
@@ -352,11 +353,11 @@ namespace Pexty
 
                 protected virtual void CalculateSpeed()
                 {
-                    m_currentSpeed = movementInputData.IsRunning && CanRun() ? runSpeed : walkSpeed;
-                    m_currentSpeed = movementInputData.IsCrouching ? crouchSpeed : m_currentSpeed;
-                    m_currentSpeed = !movementInputData.HasInput ? 0f : m_currentSpeed;
-                    m_currentSpeed = movementInputData.InputVector.y == -1 ? m_currentSpeed * moveBackwardsSpeedPercent : m_currentSpeed;
-                    m_currentSpeed = movementInputData.InputVector.x != 0 && movementInputData.InputVector.y ==  0 ? m_currentSpeed * moveSideSpeedPercent :  m_currentSpeed;
+                    m_currentSpeed = movementInputData.isRunning && canRun? runSpeed : walkSpeed;
+                    m_currentSpeed = movementInputData.isCrouching ? crouchSpeed : m_currentSpeed;
+                    m_currentSpeed = !movementInputData.hasInput ? 0f : m_currentSpeed;
+                    m_currentSpeed = movementInputData.inputVector.y == -1 ? m_currentSpeed * moveBackwardsSpeedPercent : m_currentSpeed;
+                    m_currentSpeed = movementInputData.inputVector.x != 0 && movementInputData.inputVector.y ==  0 ? m_currentSpeed * moveSideSpeedPercent :  m_currentSpeed;
                 }
 
                 protected virtual void CalculateFinalMovement()
@@ -376,13 +377,13 @@ namespace Pexty
             #region Crouching Methods
                 protected virtual void HandleCrouch()
                 {
-                    if(movementInputData.CrouchClicked && m_grounded)
+                    if(movementInputData.crouchClicked && m_grounded)
                         InvokeCrouchRoutine();
                 }
 
                 protected virtual void InvokeCrouchRoutine()
                 {
-                    if(movementInputData.IsCrouching)
+                    if(movementInputData.isCrouching)
                         if(CheckIfRoof())
                             return;
 
@@ -407,15 +408,15 @@ namespace Pexty
                     float _currentHeight = m_characterController.height;
                     Vector3 _currentCenter = m_characterController.center;
 
-                    float _desiredHeight = movementInputData.IsCrouching ? m_initHeight : m_crouchHeight;
-                    Vector3 _desiredCenter = movementInputData.IsCrouching ? m_initCenter : m_crouchCenter;
+                    float _desiredHeight = movementInputData.isCrouching ? m_initHeight : m_crouchHeight;
+                    Vector3 _desiredCenter = movementInputData.isCrouching ? m_initCenter : m_crouchCenter;
 
                     Vector3 _camPos = m_yawTransform.localPosition;
                     float _camCurrentHeight = _camPos.y;
-                    float _camDesiredHeight = movementInputData.IsCrouching ? m_initCamHeight : m_crouchCamHeight;
+                    float _camDesiredHeight = movementInputData.isCrouching ? m_initCamHeight : m_crouchCamHeight;
 
-                    movementInputData.IsCrouching = !movementInputData.IsCrouching;
-                    m_headBob.CurrentStateHeight = movementInputData.IsCrouching ? m_crouchCamHeight : m_initCamHeight;
+                    movementInputData.isCrouching = !movementInputData.isCrouching;
+                    m_headBob.CurrentStateHeight = movementInputData.isCrouching ? m_crouchCamHeight : m_initCamHeight;
 
                     while(_percent < 1f)
                     {
@@ -484,11 +485,11 @@ namespace Pexty
                 protected virtual void HandleHeadBob()
                 {
                     
-                    if(movementInputData.HasInput && m_grounded  && !m_hitWall)
+                    if(movementInputData.hasInput && m_grounded  && !m_hitWall)
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
-                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && CanRun(), movementInputData.IsCrouching, movementInputData.InputVector);
+                            m_headBob.ScrollHeadBob(movementInputData.isRunning && canRun, movementInputData.isCrouching, movementInputData.inputVector);
                             m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset, Time.deltaTime * smoothHeadBobSpeed);
                         }
                     }
@@ -508,27 +509,27 @@ namespace Pexty
 
                 protected virtual void HandleCameraSway()
                 {
-                    m_cameraController.HandleSway(m_smoothInputVector,movementInputData.InputVector.x);
+                    m_cameraController.HandleSway(m_smoothInputVector,movementInputData.inputVector.x);
                 }
 
                 protected virtual void HandleRunFOV()
                 {
-                    if(movementInputData.HasInput && m_grounded  && !m_hitWall)
+                    if(movementInputData.hasInput && m_grounded  && !m_hitWall)
                     {
-                        if(movementInputData.RunClicked && CanRun())
+                        if(movementInputData.runClicked && canRun)
                         {
                             m_duringRunAnimation = true;
                             m_cameraController.ChangeRunFOV(false);
                         }
 
-                        if(movementInputData.IsRunning && CanRun() && !m_duringRunAnimation )
+                        if(movementInputData.isRunning && canRun&& !m_duringRunAnimation )
                         {
                             m_duringRunAnimation = true;
                             m_cameraController.ChangeRunFOV(false);
                         }
                     }
 
-                    if(movementInputData.RunReleased || !movementInputData.HasInput || m_hitWall)
+                    if(movementInputData.runReleased || !movementInputData.hasInput || m_hitWall)
                     {
                         if(m_duringRunAnimation)
                         {
@@ -539,7 +540,7 @@ namespace Pexty
                 }
                 protected virtual void HandleJump()
                 {
-                    if(movementInputData.JumpClicked && !movementInputData.IsCrouching)
+                    if(movementInputData.jumpClicked && !movementInputData.isCrouching)
                     {
                         //m_finalMoveVector.y += jumpSpeed /* m_currentSpeed */; // we are adding because ex. when we are going on slope we want to keep Y value not overwriting it
                         m_finalMoveVector.y = jumpSpeed /* m_currentSpeed */; // turns out that when adding to Y it is too much and it doesn't feel correct because jumping on slope is much faster and higher;
@@ -576,12 +577,14 @@ namespace Pexty
 
                     transform.rotation = Quaternion.Slerp(_currentRot, _desiredRot, Time.deltaTime * smoothRotateSpeed);
                 }
+            #endregion
 
-                public bool IsGrounded => m_grounded;
-                public bool IsMoving => movementInputData.HasInput && IsGrounded;
-                public bool IsCrouching => IsMoving && movementInputData.IsCrouching;
-                public bool IsWalking => IsMoving && !IsCrouching && !IsRunning;
-                public bool IsRunning => IsGrounded && movementInputData.IsRunning && !movementInputData.IsCrouching && movementInputData.InputVector.y > 0f && staminaController.CanRun;
+            #region Public Getters
+                public bool isGrounded => m_grounded;
+                public bool isMoving => movementInputData.hasInput && isGrounded;
+                public bool isCrouching => isMoving && movementInputData.isCrouching;
+                public bool isWalking => isMoving && !isCrouching && !isRunning;
+                public bool isRunning => isGrounded && movementInputData.isRunning && !movementInputData.isCrouching && movementInputData.inputVector.y > 0f && staminaController.canRun;
             #endregion
         #endregion
     }

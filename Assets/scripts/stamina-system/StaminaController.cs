@@ -37,7 +37,7 @@ namespace Pexty
             {
                 m_value = Math.Min(m_maxValue, Math.Max(0, m_value)); // 0 <= m_value <= m_maxValue
 
-                if (m_value > 0 && firstPersonController.IsRunning) m_value -= Time.deltaTime; // stamina decreasing
+                if (m_value > 0 && firstPersonController.isRunning) m_value -= Time.deltaTime; // stamina decreasing
                 if (m_value == 0) isRestoring = true;
 
                 if (m_value == m_maxValue)
@@ -52,15 +52,15 @@ namespace Pexty
                     else m_value += Time.deltaTime; // stamina increasing
                 }
 
-                if (m_value < m_maxValue && !firstPersonController.IsRunning && !isRestoring) m_value += Time.deltaTime; // stamina increasing
+                if (m_value < m_maxValue && !firstPersonController.isRunning && !isRestoring) m_value += Time.deltaTime; // stamina increasing
             }
         #endregion
 
         #region Custom Methods
-            public bool CanRun => !isRestoring;
+            public bool canRun => !isRestoring;
 
-            public float Value => m_value;
-            public float MaxValue
+            public float value => m_value;
+            public float maxValue
             {
                 get => m_maxValue;
                 set => m_maxValue = value;

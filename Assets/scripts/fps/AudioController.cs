@@ -37,17 +37,17 @@ namespace Pexty
             // Update is called once per frame
             void Update()
             {
-                float currentStepDuration = firstPersonController.IsRunning ? runningStepDuration : (firstPersonController.IsCrouching ? crouchingStepDuration : walkingStepDuration);
+                float currentStepDuration = firstPersonController.isRunning ? runningStepDuration : (firstPersonController.isCrouching ? crouchingStepDuration : walkingStepDuration);
                 
                 if (stepTimer < currentStepDuration) stepTimer += Time.deltaTime;
 
                 if (
-                        firstPersonController.IsGrounded && (movementInputData.HasInput || !prevIsGrounded) // triggered if the player moves, starts or finishes a jump, lands on the surface
+                        firstPersonController.isGrounded && (movementInputData.hasInput || !prevIsGrounded) // triggered if the player moves, starts or finishes a jump, lands on the surface
                         &&
                         stepTimer >= currentStepDuration
                    ) 
                 {
-                    if(Random.Range(0f, 1f) >= 0.5f || stepSkipped || firstPersonController.IsGrounded && !prevIsGrounded) { 
+                    if(Random.Range(0f, 1f) >= 0.5f || stepSkipped || firstPersonController.isGrounded && !prevIsGrounded) { 
                         // can skip no more than 1 step in a row
 
                         audioSource.clip = stepSounds[Random.Range(0, stepSounds.Length)];
@@ -59,7 +59,7 @@ namespace Pexty
                     stepTimer = 0f;
                 }
 
-                prevIsGrounded = firstPersonController.IsGrounded;
+                prevIsGrounded = firstPersonController.isGrounded;
             }
         #endregion
     }

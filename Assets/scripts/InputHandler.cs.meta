@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - cameraInputData: {fileID: 11400000, guid: 91ebd8974cbf1964f86a0e8b5e93ed5c, type: 2}
   - movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
-  - interactionInputData: {fileID: 11400000, guid: 53d9f3696d1130146ae3edd77cffcd05, type: 2}
+  - interactionInputData: {fileID: 11400000, guid: cf5ebeb73e9d7da4c8789a617b4c1d0c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

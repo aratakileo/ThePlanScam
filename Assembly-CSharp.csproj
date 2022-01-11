@@ -67,6 +67,7 @@
     <Compile Include="Assets\scripts\interaction-system\IInteractable.cs" />
     <Compile Include="Assets\scripts\PerlinNoiseScroller.cs" />
     <Compile Include="Assets\scripts\stamina-system\StaminaController.cs" />
+    <Compile Include="Assets\scripts\WorldBehaviour.cs" />
     <Compile Include="Assets\scripts\scriptable-objs\PickableData.cs" />
     <Compile Include="Assets\scripts\camera-controller\CameraZoom.cs" />
     <Compile Include="Assets\scripts\interaction-system\InteractionUIPanel.cs" />
@@ -81,8 +82,9 @@
     <Compile Include="Assets\scripts\interaction-system\Hoverable.cs" />
     <Compile Include="Assets\scripts\stamina-system\ProgressBarController.cs" />
     <Compile Include="Assets\scripts\camera-controller\CameraBreathing.cs" />
-    <Compile Include="Assets\scripts\interaction-system\InteractionData.cs" />
     <Compile Include="Assets\scripts\fps\AudioController.cs" />
+    <Compile Include="Assets\scripts\interaction-system\InteractionData.cs" />
+    <Compile Include="Assets\scripts\AIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

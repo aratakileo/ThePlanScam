@@ -19,7 +19,7 @@ namespace Pexty
         // Update is called once per frame
         void Update()
         {
-            float percent = staminaController.Value / staminaController.MaxValue;
+            float percent = staminaController.value / staminaController.maxValue;
 
             if (percent > 0.65f) progressImage.color = ColorUtil.fromRgb(DEFAULT_COLOR);
             if (percent <= 0.65f) progressImage.color = ColorUtil.fromRgb(MIDDLE_COLOR);

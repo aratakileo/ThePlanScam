@@ -46,20 +46,20 @@ namespace Pexty
 
             void GetMovementInputData()
             {
-                movementInputData.InputVectorX = Input.GetAxisRaw("Horizontal");
-                movementInputData.InputVectorY = Input.GetAxisRaw("Vertical");
+                movementInputData.inputVectorX = Input.GetAxisRaw("Horizontal");
+                movementInputData.inputVectorY = Input.GetAxisRaw("Vertical");
 
-                movementInputData.RunClicked = Input.GetKeyDown(KeyCode.LeftShift);
-                movementInputData.RunReleased = Input.GetKeyUp(KeyCode.LeftShift);
+                movementInputData.runClicked = Input.GetKeyDown(KeyCode.LeftShift);
+                movementInputData.runReleased = Input.GetKeyUp(KeyCode.LeftShift);
 
-                if(movementInputData.RunClicked)
-                    movementInputData.IsRunning = true;
+                if(movementInputData.runClicked)
+                    movementInputData.isRunning = true;
 
-                if(movementInputData.RunReleased)
-                    movementInputData.IsRunning = false;
+                if(movementInputData.runReleased)
+                    movementInputData.isRunning = false;
 
-                movementInputData.JumpClicked = Input.GetKeyDown(KeyCode.Space);
-                movementInputData.CrouchClicked = Input.GetKeyDown(KeyCode.LeftControl);
+                movementInputData.jumpClicked = Input.GetKeyDown(KeyCode.Space);
+                movementInputData.crouchClicked = Input.GetKeyDown(KeyCode.LeftControl);
             }
         #endregion
     }

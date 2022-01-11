@@ -19,49 +19,49 @@ namespace Pexty
         #endregion
 
         #region Properties
-            public Vector2 InputVector => m_inputVector;
-            public bool HasInput => m_inputVector != Vector2.zero;
-            public float InputVectorX
+            public Vector2 inputVector => m_inputVector;
+            public bool hasInput => m_inputVector != Vector2.zero;
+            public float inputVectorX
             {
                 set => m_inputVector.x = value;
             }
 
-            public float InputVectorY
+            public float inputVectorY
             {
                 set => m_inputVector.y = value;
             }
 
-            public bool IsRunning
+            public bool isRunning
             {
                 get => m_isRunning;
                 set => m_isRunning = value;
             }
 
-            public bool IsCrouching
+            public bool isCrouching
             {
                 get => m_isCrouching;
                 set => m_isCrouching = value;
             }
 
-            public bool CrouchClicked
+            public bool crouchClicked
             {
                 get => m_crouchClicked;
                 set => m_crouchClicked = value;
             }
 
-            public bool JumpClicked
+            public bool jumpClicked
             {
                 get => m_jumpClicked;
                 set => m_jumpClicked = value;
             }
 
-            public bool RunClicked
+            public bool runClicked
             {
                 get => m_runClicked;
                 set => m_runClicked = value;
             }
 
-            public bool RunReleased
+            public bool runReleased
             {
                 get => m_runReleased;
                 set => m_runReleased = value;
