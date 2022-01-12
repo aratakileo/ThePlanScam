@@ -28,6 +28,7 @@ namespace Pexty
                     [SerializeField] private float viewRadius = 15;                   //  Radius of the enemy view
                     [SerializeField] private float viewAngle = 90;                    //  Angle of the enemy view
                     [SerializeField] private LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
+                    [SerializeField] private LayerMask playerMask;
                 #endregion
 
                 #region Patrolling Settings
@@ -67,7 +68,8 @@ namespace Pexty
 
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+            //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+            NextRandomPoint();
         }
 
         void Update()
@@ -97,6 +99,7 @@ namespace Pexty
             }
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
             {
+                firstPersonController.Respawn();
                 if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, firstPersonController.transform.position) >= 6f)
                 {
                     //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
@@ -144,7 +147,7 @@ namespace Pexty
                     //  If the enemy arrives to the waypoint position then wait for a moment and go to the next
                     if (m_WaitTime <= 0)
                     {
-                        NextPoint();
+                        NextRandomPoint();
                         Move(speedWalk);
                         m_WaitTime = startWaitTime;
                     }
@@ -162,9 +165,18 @@ namespace Pexty
 
         }
 
-        public void NextPoint()
+        public void NextRandomPoint()
         {
-            m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            int formerWaypointIndex = m_CurrentWaypointIndex;
+            //m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            m_CurrentWaypointIndex = Random.Range(0, waypoints.Length);
+
+            if (formerWaypointIndex == m_CurrentWaypointIndex)
+            {
+                NextRandomPoint();
+                return;
+            }
+
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         }
 
@@ -208,37 +220,43 @@ namespace Pexty
 
         void EnviromentView()
         {
-            Vector3 dirToPlayer = (firstPersonController.transform.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+            Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);   //  Make an overlap sphere around the enemy to detect the playermask in the view radius
+
+            for (int i = 0; i < playerInRange.Length; i++)
             {
-                float dstToPlayer = Vector3.Distance(transform.position, firstPersonController.transform.position);          //  Distance of the enmy and the player
-                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+                Transform player = playerInRange[i].transform;
+                Vector3 dirToPlayer = (player.position - transform.position).normalized;
+                if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
                 {
+                    float dstToPlayer = Vector3.Distance(transform.position, player.position);          //  Distance of the enmy and the player
+                    if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+                    {
                         m_playerInRange = true;             //  The player has been seeing by the enemy and then the nemy starts to chasing the player
                         m_IsPatrol = false;                 //  Change the state to chasing the player
+                    }
+                    else
+                    {
+                        /*
+                         *  If the player is behind a obstacle the player position will not be registered
+                         * */
+                        m_playerInRange = false;
+                    }
                 }
-                else
+                if (Vector3.Distance(transform.position, player.position) > viewRadius)
                 {
                     /*
-                    *  If the player is behind a obstacle the player position will not be registered
-                    * */
-                    m_playerInRange = false;
+                     *  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
+                     *  Or the enemy is a safe zone, the enemy will no chase
+                     * */
+                    m_playerInRange = false;                //  Change the sate of chasing
                 }
-            }
-            if (Vector3.Distance(transform.position, firstPersonController.transform.position) > viewRadius)
-            {
-                /*
-                *  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
-                *  Or the enemy is a safe zone, the enemy will no chase
-                * */
-                m_playerInRange = false;                //  Change the sate of chasing
-            }
-            if (m_playerInRange)
-            {
-                /*
-                *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
-                * */
-                m_PlayerPosition = firstPersonController.transform.position;       //  Save the player's current position if the player is in range of vision
+                if (m_playerInRange)
+                {
+                    /*
+                     *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
+                     * */
+                    m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
+                }
             }
         }
     }

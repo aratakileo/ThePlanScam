@@ -15,7 +15,6 @@ namespace Pexty
                     [SerializeField] private MovementInputData movementInputData = null;
                     [SerializeField] private HeadBobData headBobData = null;
                     [SerializeField] private StaminaController staminaController = null;
-                    [SerializeField] private WorldBehaviour worldBehaviour;
 
                 #endregion
                     
@@ -83,22 +82,29 @@ namespace Pexty
                     [InfoBox("It should smooth our player movement to not start fast and not stop fast but it's somehow jerky", InfoBoxType.Warning)]
                     [Tooltip("If set to very high it will stop player immediately after releasing input, otherwise it just another smoothing to our movement to make our player not move fast immediately and not stop immediately")]
                     [ShowIf("experimental")] [Range(1f,100f)] [SerializeField] private float smoothInputMagnitudeSpeed = 5f;
-                    
+
+                #endregion
+
+                #region Other
+                    [Space, Header("Other")]
+                    [SerializeField] private Vector3 spawnPoint = Vector3.zero;
                 #endregion
             #endregion
             #region Private Non-Serialized
-                #region Components / Custom Classes / Caches
-                    private CharacterController m_characterController;
-                    private Transform m_yawTransform;
-                    private Transform m_camTransform;
-                    private HeadBob m_headBob;
-                    private CameraController m_cameraController;
-                    private AudioSource audioSource;
+                    #region Components / Custom Classes / Caches
+                        private CharacterController m_characterController;
+                        private Transform m_yawTransform;
+                        private Transform m_camTransform;
+                        private HeadBob m_headBob;
+                        private CameraController m_cameraController;
+                        private AudioSource audioSource;
                     
-                    private RaycastHit m_hitInfo;
-                    private IEnumerator m_CrouchRoutine;
-                    private IEnumerator m_LandRoutine;
-                #endregion
+                        private RaycastHit m_hitInfo;
+                        private IEnumerator m_CrouchRoutine;
+                        private IEnumerator m_LandRoutine;
+                        
+                        private bool m_respawnCalled = false;
+                    #endregion
 
                 #region Debug
                     [Space]
@@ -150,12 +156,21 @@ namespace Pexty
             {
                 GetComponents();
                 InitVariables();
+                
+                spawnPoint = transform.position;
             }
 
             protected virtual void Update()
             {
+                if (m_respawnCalled)
+                {
+                    m_respawnCalled = false;
+                    return;
+                }
+
                 if (transform.position.y <= -50f) {
-                    transform.position = worldBehaviour.worldSpawnPosition;
+                    Respawn();
+                    m_respawnCalled = false;
                     return;
                 }
 
@@ -207,6 +222,12 @@ namespace Pexty
         #endregion
 
         #region Custom Methods
+            public void Respawn()
+            {
+                transform.position = spawnPoint;
+                m_respawnCalled = true;
+            }
+
             #region Initialize Methods    
                 protected virtual void GetComponents()
                 {
