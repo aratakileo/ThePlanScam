@@ -22,6 +22,7 @@ namespace Pexty
                 private float m_value;
                 private float cooldownDuration = 0f;
                 private bool isRestoring = false;
+                private bool wasRunningOnTheGround = true;
             #endregion
         #endregion
 
@@ -37,7 +38,7 @@ namespace Pexty
             {
                 m_value = Math.Min(m_maxValue, Math.Max(0, m_value)); // 0 <= m_value <= m_maxValue
 
-                if (m_value > 0 && firstPersonController.isRunning) m_value -= Time.deltaTime; // stamina decreasing
+                if (m_value > 0 && (firstPersonController.isRunning || wasRunningOnTheGround)) m_value -= Time.deltaTime; // stamina decreasing
                 if (m_value == 0) isRestoring = true;
 
                 if (m_value == m_maxValue)
@@ -52,7 +53,9 @@ namespace Pexty
                     else m_value += Time.deltaTime; // stamina increasing
                 }
 
-                if (m_value < m_maxValue && !firstPersonController.isRunning && !isRestoring) m_value += Time.deltaTime; // stamina increasing
+                if (m_value < m_maxValue && !firstPersonController.isRunning && !isRestoring && !wasRunningOnTheGround) m_value += Time.deltaTime; // stamina increasing
+
+                if (firstPersonController.isGrounded) wasRunningOnTheGround = firstPersonController.isRunning;
             }
         #endregion
 
