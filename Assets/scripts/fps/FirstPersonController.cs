@@ -87,7 +87,7 @@ namespace Pexty
 
                 #region Other
                     [Space, Header("Other")]
-                    [SerializeField] private Vector3 spawnPoint = Vector3.zero;
+                    [SerializeField] private Vector3? spawnPoint = null;
                 #endregion
             #endregion
             #region Private Non-Serialized
@@ -103,7 +103,7 @@ namespace Pexty
                         private IEnumerator m_CrouchRoutine;
                         private IEnumerator m_LandRoutine;
                         
-                        private bool m_respawnCalled = false;
+                        private bool m_teleportCalled = false;
                     #endregion
 
                 #region Debug
@@ -157,20 +157,20 @@ namespace Pexty
                 GetComponents();
                 InitVariables();
                 
-                spawnPoint = transform.position;
+                if (spawnPoint == null) spawnPoint = transform.position;
             }
 
             protected virtual void Update()
             {
-                if (m_respawnCalled)
+                if (m_teleportCalled)
                 {
-                    m_respawnCalled = false;
+                    m_teleportCalled = false;
                     return;
                 }
 
                 if (transform.position.y <= -50f) {
                     Respawn();
-                    m_respawnCalled = false;
+                    m_teleportCalled = false;
                     return;
                 }
 
@@ -222,10 +222,14 @@ namespace Pexty
         #endregion
 
         #region Custom Methods
+            public void Teleport(Vector3 newPosition) { 
+                transform.position = newPosition;
+                m_teleportCalled = true;
+            }
+            
             public void Respawn()
             {
-                transform.position = spawnPoint;
-                m_respawnCalled = true;
+                Teleport((Vector3)spawnPoint);
             }
 
             #region Initialize Methods    
@@ -511,7 +515,7 @@ namespace Pexty
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
                             m_headBob.ScrollHeadBob(movementInputData.isRunning && canRun, movementInputData.isCrouching, movementInputData.inputVector);
-                            m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset, Time.deltaTime * smoothHeadBobSpeed);
+                            m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition, (Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset, Time.deltaTime * smoothHeadBobSpeed);
                         }
                     }
                     else // if we are not moving or we are not grounded
@@ -530,7 +534,7 @@ namespace Pexty
 
                 protected virtual void HandleCameraSway()
                 {
-                    m_cameraController.HandleSway(m_smoothInputVector,movementInputData.inputVector.x);
+                    m_cameraController.HandleSway(m_smoothInputVector, movementInputData.inputVector.x);
                 }
 
                 protected virtual void HandleRunFOV()
@@ -543,14 +547,14 @@ namespace Pexty
                             m_cameraController.ChangeRunFOV(false);
                         }
 
-                        if(movementInputData.isRunning && canRun&& !m_duringRunAnimation )
+                        if(movementInputData.isRunning && canRun && !m_duringRunAnimation )
                         {
                             m_duringRunAnimation = true;
                             m_cameraController.ChangeRunFOV(false);
                         }
                     }
 
-                    if(movementInputData.runReleased || !movementInputData.hasInput || m_hitWall)
+                    if(movementInputData.runReleased || !movementInputData.hasInput || m_hitWall || !staminaController.canRun)
                     {
                         if(m_duringRunAnimation)
                         {

@@ -36,6 +36,11 @@ namespace Pexty
                     [SerializeField] private Transform[] waypoints;                   //  All the waypoints where the enemy patrols
                     //public float meshResolution = 1.0f;
                 #endregion
+
+                #region Other
+                    [Space, Header("Other")]
+                    [SerializeField] private Vector3? spawnPoint = null;
+                #endregion
             #endregion
 
             #region Private Non-Serialized
@@ -49,15 +54,15 @@ namespace Pexty
                 private bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
                 private bool m_PlayerNear;                              //  If the player is near, state of hearing
                 private bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
-                private bool m_CaughtPlayer;                            //  if the enemy has caught the player
             #endregion
         #endregion
 
         void Start()
         {
+            if (spawnPoint == null) spawnPoint = transform.position;
+
             m_PlayerPosition = Vector3.zero;
             m_IsPatrol = true;
-            m_CaughtPlayer = false;
             m_playerInRange = false;
             m_PlayerNear = false;
             m_WaitTime = startWaitTime;                 //  Set the wait time variable that will change
@@ -84,6 +89,8 @@ namespace Pexty
             {
                 Patroling();
             }
+
+            if (Vector3.Distance(transform.position, firstPersonController.transform.position) < 2.2f) CaughtPlayer();
         }
 
         private void Chasing()
@@ -92,15 +99,12 @@ namespace Pexty
             m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
             playerLastPosition = Vector3.zero;          //  Reset the player near position
 
-            if (!m_CaughtPlayer)
-            {
-                Move(speedRun);
-                navMeshAgent.SetDestination(m_PlayerPosition);          //  set the destination of the enemy to the player location
-            }
+            Move(speedRun);
+            navMeshAgent.SetDestination(m_PlayerPosition);          //  set the destination of the enemy to the player location
+
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
             {
-                firstPersonController.Respawn();
-                if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, firstPersonController.transform.position) >= 6f)
+                if (m_WaitTime <= 0 && Vector3.Distance(transform.position, firstPersonController.transform.position) >= 6f)
                 {
                     //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
                     m_IsPatrol = true;
@@ -194,7 +198,9 @@ namespace Pexty
 
         void CaughtPlayer()
         {
-            m_CaughtPlayer = true;
+            firstPersonController.Respawn();
+            Start();
+            transform.position = (Vector3)spawnPoint;
         }
 
         void LookingPlayer(Vector3 player)
@@ -226,6 +232,7 @@ namespace Pexty
             {
                 Transform player = playerInRange[i].transform;
                 Vector3 dirToPlayer = (player.position - transform.position).normalized;
+
                 if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
                 {
                     float dstToPlayer = Vector3.Distance(transform.position, player.position);          //  Distance of the enmy and the player
@@ -242,6 +249,7 @@ namespace Pexty
                         m_playerInRange = false;
                     }
                 }
+
                 if (Vector3.Distance(transform.position, player.position) > viewRadius)
                 {
                     /*
@@ -250,6 +258,7 @@ namespace Pexty
                      * */
                     m_playerInRange = false;                //  Change the sate of chasing
                 }
+
                 if (m_playerInRange)
                 {
                     /*

@@ -8,7 +8,6 @@ namespace Pexty
             #region Data
                 [Space, Header("Data")]
                 [SerializeField] private FirstPersonController firstPersonController;
-                [SerializeField] private MovementInputData movementInputData = null;
                 [SerializeField] private AudioSource audioSource = null;
             #endregion
 
@@ -18,7 +17,7 @@ namespace Pexty
                 [SerializeField] private float crouchingStepDuration = 0.7f;
                 [SerializeField] private float walkingStepDuration = 0.4f;
                 [SerializeField] private float runningStepDuration = 0.2f;
-        #endregion
+            #endregion
 
             #region Private
                 private float stepTimer;
@@ -42,7 +41,7 @@ namespace Pexty
                 if (stepTimer < currentStepDuration) stepTimer += Time.deltaTime;
 
                 if (
-                        firstPersonController.isGrounded && (movementInputData.hasInput || !prevIsGrounded) // triggered if the player moves, starts or finishes a jump, lands on the surface
+                        (firstPersonController.isMoving || !prevIsGrounded) // triggered if the player moves, starts or finishes a jump, lands on the surface
                         &&
                         stepTimer >= currentStepDuration
                    ) 
