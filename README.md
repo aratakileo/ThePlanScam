@@ -1,4 +1,5 @@
 # ThePlanScam (Development interrupted)
+A horror game in which a popular Valyukha (a grandmother on a hype) dragged gg into her mansion for a dislike of her minecraft speedrun with hunters to bring the scam plan to life. In order to avoid this fate and escape, it will be necessary to collect 5 cartridges, and insert them yourself so that the cartridge case scanner opens the door. However, it will not be so easy because the grandmother is very prosharennaya, it will not be difficult for her to get bored anywhere, anyone.
 - Horror game
 - Powered by Unity3D
 - Not finished
