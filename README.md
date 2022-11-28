@@ -18,4 +18,4 @@ A horror game in which a popular Valyukha (a grandmother on a hype) dragged gg i
 ![image](https://user-images.githubusercontent.com/83653555/158366816-d88754bb-09f6-44e3-a64e-789a442291f6.png)
 
 ### Download
-[Download latest build for Windows](https://github.com/TeaCondemns/ThePlanScam/raw/main/Build.zip)
+[[Latest build for Windows-x86]](https://github.com/teacondemns/ThePlanScam/releases/tag/builded-0)
